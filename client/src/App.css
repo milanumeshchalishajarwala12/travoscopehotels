@@ -1,38 +1,213 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
+/*Body*/
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+p,
+h2,
+h3 {
+  margin: 0rem;
+  padding: 0rem;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/*Top Navigation Bar*/
+.topnavbar {
+  overflow: hidden;
+  position: fixed;
+  z-index: +1;
+  width: 100%;
+  height: 8rem;
+  margin: 0px;
+  padding: 0px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(233, 233, 233, 0) 52%
+  );
+}
+
+.topnavbar:hover {
+  transition-duration: 500ms;
+}
+
+.topnavbar p {
+  margin: 0px;
+  padding: 0px;
+}
+.topnavbar li {
+  font-family: 'Cinzel', serif;
+  float: right;
+  text-decoration: none;
+  display: flex;
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0rem 1.2rem 0rem;
+  margin: 0px 7px 0px 7px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+li:visited {
+  color: black;
+}
+
+.topnavbar li:hover {
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+.navlogo {
+  width: 200px;
+  height: 60px;
+  float: left;
+}
+
+/* Bottom Bar*/
+
+.bottombar {
+  font-size: 0.7rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*Landing Page*/
+
+.landing {
+  background: url('./img/landing.jpg') no-repeat center/cover;
+  height: 50rem;
+  margin: 0px;
+  padding: 0px;
+}
+label {
+  font-size: 1.2rem;
+  font-family: 'Pacifico';
+  padding: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input,
+select {
+  width: auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 2rem;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button {
+  width: auto;
+  background-color: #efe2ba;
+  color: black;
+  cursor: pointer;
+  border-radius: 1px;
+  height: auto;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Pacifico';
+  margin-left: 1rem;
+}
+
+button:hover {
+  border: 1px whitesmoke solid;
+}
+
+.bookingformcontainer {
+  box-sizing: border-box;
+  height: 7rem;
+  width: 65rem;
+  padding: 1.5rem;
+  border-radius: 3px;
+  margin: 50px 200px 50px 200px;
+  background: black;
   color: white;
+  position: absolute;
+  z-index: 0;
+  bottom: 0px;
+  transition-duration: 700ms;
 }
 
-.App-link {
-  color: #61dafb;
+.bookingformcontainer:hover {
+  transition-duration: 700ms;
+}
+.bookingformcontainer p {
+  padding: 1rem;
+  float: left;
+  font-family: 'Playfair Display';
+  font-size: 1.5rem;
+  padding: initial;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bookingform {
+  float: right;
+  padding: initial;
+}
+
+.section12 {
+  box-sizing: content-box;
+  width: 50%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 30px 310px 30px 310px;
+  border-radius: 2px;
+  font-family: 'Caveat';
+}
+
+.landingsection2img {
+  background: url('./img/section2.jpg') no-repeat center/cover;
+  height: 45rem;
+  width: 100%;
+}
+.landingsection2text {
+  box-sizing: border-box;
+  padding: 3rem;
+  height: auto;
+  width: 30%;
+  float: left;
+  margin: 10rem 0rem 30rem 5rem;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 3rem;
+  color: white;
+  font-family: 'Great Vibes';
+}
+
+.landingsection2text a:hover {
+  text-decoration: underline;
+}
+
+.landingsection3img {
+  background: url('./img/section3.jpg') no-repeat center/cover;
+  height: 45rem;
+  width: 100%;
+}
+
+.landingsection3text {
+  box-sizing: border-box;
+  padding: 3rem;
+  height: auto;
+  width: 30%;
+  float: right;
+  margin: 10rem 5rem 30rem 0rem;
+  background: white;
+  font-size: 2.5rem;
+  color: rgba(20, 160, 216, 0.822);
+  font-family: 'Great Vibes';
+}
+
+.landingsection3text a:hover {
+  text-decoration: underline;
 }
