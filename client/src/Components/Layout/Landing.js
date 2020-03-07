@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import BookingForm from './BookingForm';
 import Section2 from './Section2';
 import Section3 from './Section3';
+import LandingFooter from './LandingFooter';
+
 class Landing extends Component {
   render() {
     return (
@@ -17,14 +19,13 @@ class Landing extends Component {
               borderBottom: '1px solid black'
             }}
           >
-            TRAVOSCOPE HOTELS
+            Having Legacy of over 50 years
           </p>
           <p>
-            <br /> AT THE HEART OF COMMUNITIES FOR OVER 80 YEARS
             <br /> Bringing people together is what we’ve done since opening our
-            first Sheraton in 1937. Now we’re deeply rooted in over 400
-            communities across the globe. We are proud to act as a point of
-            connection for millions of travelers, many just like you. Welcome.
+            first hotel in 1967. Now we’re deeply rooted in over 400 communities
+            across the globe. We are proud to act as a point of connection for
+            millions of travelers, many just like you. Welcome.
           </p>
         </div>
         <div>
@@ -50,6 +51,9 @@ class Landing extends Component {
           </p>
         </div>
         <Section3 />
+        <div style={{ height: '6rem', width: '100%' }}></div>
+
+        <LandingFooter />
       </Fragment>
     );
   }

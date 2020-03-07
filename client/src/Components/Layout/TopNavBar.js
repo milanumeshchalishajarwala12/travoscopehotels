@@ -6,7 +6,9 @@ const TopNavBar = () => {
     <Fragment>
       <ul className="topnavbar">
         <div>
-          <li style={{ opacity: 1 }}>Login</li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
           <li>Online Check In</li>
           <li>
             <Link to="/contactus">Contact Us</Link>

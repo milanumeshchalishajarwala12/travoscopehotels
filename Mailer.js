@@ -3,13 +3,20 @@ const router = express.Router();
 const app = express();
 const nodemailer = require('nodemailer');
 const axios = require('axios');
+const { check, validationResult } = require('express-validator');
 
-/*
-
-export const Mailer = ({ firstname, lastname, email }) => {
-  app.post('/signupemail', (req, res) => {
-    console.log(req.body);
-
+app.post(
+  '/',
+  [
+    check('firstname', 'Firstname required')
+      .not()
+      .isEmpty(),
+    check('firstname', 'Firstname required')
+      .not()
+      .isEmpty(),
+    check('email', 'Enter valid email').isEmail()
+  ],
+  (req, res) => {
     const output = `
 <h2>Your Account Has been Succesfully created with follwing credentials</h2>
 <ul>
@@ -48,10 +55,9 @@ export const Mailer = ({ firstname, lastname, email }) => {
     });
 
     res.send({ msg: 'Email has been sent' });
-  });
-};
+  }
+);
 
 export default Mailer;
-*/
 
 module.exports = router;
