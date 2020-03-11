@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css?family=Poppins|Prata&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins|Prata|Bellota|Viaoda+Libre&display=swap');
+
+/*Alerts*/
+
 /*Body*/
 body {
   margin: 0px;
@@ -33,7 +36,7 @@ h3 {
   height: 4rem;
   margin: 0px;
   padding: 0px;
-  background: rgba(0, 0, 0, 0.61);
+  background: rgba(0, 0, 0, 0.99);
 }
 
 .topnavbar:hover {
@@ -97,7 +100,7 @@ label {
 
 input,
 select {
-  width: auto;
+  width: 8rem;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -108,10 +111,10 @@ select {
 .bookingformcontainer {
   box-sizing: border-box;
   height: 7rem;
-  width: 65rem;
+  width: 75rem;
   padding: 1.5rem;
   border-radius: 3px;
-  margin: 50px 200px 50px 200px;
+  margin: 50px 120px 50px 120px;
   background: black;
   color: white;
   position: absolute;
@@ -211,28 +214,61 @@ select {
 
 /*Sign Up Page*/
 
-.signuppage {
+.signuppagetext {
+  float: left;
+  height: auto;
+  margin-top: 100px;
+  padding: 1rem 4rem 1rem 4rem;
+  width: 30rem;
+}
+
+.signuppagetext p {
+  font-size: 1.3rem;
+  font-family: 'Amatic SC', cursive;
+}
+
+.signuppagetext h2 {
+  text-align: center;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  font-family: 'Oxanium', cursive;
+}
+
+.signuptextsection {
   background: url('./img/signup.jpg') no-repeat center/cover;
-  padding: 5.5rem 0rem 3.5rem 4.5rem;
+  height: 20rem;
+  width: 30rem;
+  margin: 4rem 13rem 0rem 0rem;
+}
+
+.signuppage {
+  padding: 1rem;
+  background-color: seashell;
 }
 
 .signupcontainer {
-  padding: 3rem;
+  position: relative;
+  top: 8rem;
+  right: 0rem;
+  float: right;
+  padding: 1rem;
   box-sizing: border-box;
-  background: rgba(236, 233, 233, 0.863);
   width: 40rem;
   height: 50rem;
-  border-radius: 10px;
 }
 
 .signupcontainer p {
   font-family: 'Prata', serif;
-  font-size: 2.5rem;
-  text-align: center;
+  font-size: 2rem;
 }
 
 .signupcontainer a:hover {
   text-decoration: underline;
+}
+
+.signuppagetext li {
+  font-family: 'Prata', serif;
+  margin: 10px 0px 10px 0px;
 }
 
 /*Login Page*/
@@ -267,7 +303,7 @@ select {
 .loginpagetext {
   float: right;
   height: auto;
-  margin-top: 20px;
+  margin-top: 0px;
   padding: 1rem 4rem 1rem 4rem;
   width: 30rem;
 }
@@ -302,4 +338,107 @@ select {
 .loginpagetext li {
   font-family: 'Prata', serif;
   margin: 10px 0px 10px 0px;
+}
+
+/*List of Rooms*/
+
+.roomstopeditbar {
+  top: 4rem;
+  margin: 0px 10px 75px 0px;
+  background: #efe2ba;
+  height: 4rem;
+  padding: 1rem 0rem 1rem 0rem;
+  width: 100%;
+  position: sticky;
+  z-index: +1;
+}
+
+/*Room layout*/
+
+.roomcontainer {
+  position: relative;
+  box-sizing: border-box;
+  width: 97%;
+  height: 20rem;
+  margin: 20px;
+  border: 2px solid rgb(112, 175, 196);
+  background: whitesmoke;
+}
+
+.roompicture {
+  background: url('./img/presidentialroom.jpg') no-repeat center/cover;
+  float: left;
+  height: 18rem;
+  width: 18rem;
+  margin: 1rem;
+}
+
+.roomcontainer h2 {
+  margin: 10px;
+  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.roomcontainer p {
+  float: right;
+  margin: 10px;
+  font-size: 2rem;
+  font-family: 'Bellota', cursive;
+}
+
+.roomcontainer li {
+  margin: 10px 0px 10px 0px;
+  font-size: 0.7rem;
+  font-family: 'Bellota', cursive;
+}
+
+@media (max-width: 700px) {
+  .container {
+    margin-top: 8rem;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+
+  /* Text Styles */
+  p,
+  h2 {
+    font-size: 3rem;
+  }
+
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: block;
+    text-align: center;
+  }
+
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .navbar h1 {
+    margin-bottom: 1rem;
+  }
+
+  .navbar .welcome {
+    display: none;
+  }
+
+  .post {
+    grid-template-columns: 1fr;
+  }
+  .post a,
+  .post button {
+    padding: 0.3rem 0.4rem;
+  }
 }

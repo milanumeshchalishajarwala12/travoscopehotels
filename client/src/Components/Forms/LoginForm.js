@@ -48,7 +48,7 @@ export default function LoginForm() {
             backgroundColor: 'brown',
             width: '8rem',
             height: 'auto',
-            margin: '3rem 1rem 1rem 1rem'
+            margin: '2rem 1rem 1rem 1rem'
           }}
           variant="contained"
           color="primary"

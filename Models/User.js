@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
     unique: true
+  },
+  status: {
+    type: String,
+    default: 'Silver'
+  },
+  loyalityPoints: {
+    type: Number,
+    default: 100
   }
 });
 

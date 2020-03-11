@@ -1,10 +1,13 @@
-import React, { Fragment, Component, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { registerUser } from '../../actions/auth';
+import { Redirect } from 'react-router-dom';
 
-export const Signup = () => {
+export const Signup = ({ registerUser }) => {
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -16,44 +19,56 @@ export const Signup = () => {
 
   const { firstname, lastname, email, phone, password, password2 } = formData;
 
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-  const body = JSON.stringify({
-    firstname,
-    lastname,
-    email,
-    phone,
-    password
-  });
-
-  const onChange = e =>
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const onSubmit = async (e, req, res) => {
+  const onSubmit = e => {
     if (password !== password2) {
+      e.preventDefault();
+
       alert('Passwords do not match');
     } else {
+      registerUser({ firstname, lastname, email, phone, password });
+      return <Redirect to="/" />;
     }
   };
 
   return (
     <Fragment>
       <div className="signuppage">
+        <div className="signuppagetext">
+          <h2>Travoscope Hotels</h2>
+          <p>
+            Bringing people together is what we’ve done since opening our first
+            Sheraton in 1937. Now we’re deeply rooted in over 400 communities
+            across the globe. We are proud to act as a point of connection for
+            millions of travelers, many just like you. Welcome.
+          </p>
+          <div className="signuptextsection"></div>
+          <ul>
+            <li>Enjoy our resonable rates, everytime you book</li>
+            <li>Free airport pickup and drop</li>
+            <li>Earn loyality points</li>
+            <li>Wifi connectivity in every room</li>
+          </ul>
+        </div>
+
+        <div className="vl"></div>
         <div className="signupcontainer">
-          <p>Join Travoscope Hotels</p>
+          <p> Join Travoscope Hotels</p>
+
           <form
             onSubmit={e => onSubmit(e)}
             style={{
-              height: '35rem',
-              padding: '3rem'
+              position: 'relative',
+              height: '30rem',
+              width: 'auto'
             }}
           >
             <TextField
               type="text"
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="First Name"
               name="firstname"
               value={firstname}
@@ -62,7 +77,7 @@ export const Signup = () => {
             />
             <br />
             <TextField
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="Last Name"
               type="text"
               value={lastname}
@@ -71,7 +86,7 @@ export const Signup = () => {
             />
             <br />
             <TextField
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="Email Id"
               type="email"
               value={email}
@@ -81,7 +96,7 @@ export const Signup = () => {
             />
             <br />
             <TextField
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="Phone"
               type="number"
               value={phone}
@@ -91,7 +106,7 @@ export const Signup = () => {
             />
             <br />
             <TextField
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="Password"
               type="password"
               value={password}
@@ -101,7 +116,7 @@ export const Signup = () => {
             />
             <br />
             <TextField
-              style={{ width: '80%', margin: '20px' }}
+              style={{ width: '50%', margin: '20px 0px 20px 0px' }}
               label="Confirm Password"
               type="password"
               name="password2"
@@ -112,8 +127,8 @@ export const Signup = () => {
             <br />
             <Button
               style={{
-                width: '60%',
-                margin: '20px',
+                width: '40%',
+                margin: '20px 0px 20px 0px',
                 backgroundColor: 'brown'
               }}
               variant="contained"
@@ -122,11 +137,22 @@ export const Signup = () => {
             >
               Register
             </Button>
-            or <Link to="/login">Login</Link>
+            <p style={{ fontSize: '1rem' }}>
+              Already a user?
+              <Link to="/login" style={{ color: 'brown' }}>
+                {' '}
+                Log In
+              </Link>
+            </p>
           </form>
         </div>
       </div>
     </Fragment>
   );
 };
-export default Signup;
+
+Signup.propTypes = {
+  registerUser: PropTypes.func.isRequired
+};
+
+export default connect(null, { registerUser })(Signup);

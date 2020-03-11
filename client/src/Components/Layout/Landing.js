@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import BookingForm from './BookingForm';
+import BookingForm from '../Forms/BookingForm';
 import Section2 from './Section2';
 import Section3 from './Section3';
 import LandingFooter from './LandingFooter';

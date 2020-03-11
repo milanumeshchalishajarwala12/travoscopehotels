@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const User = require('../../Models/User');
+const User = require('../../../Models/User');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
@@ -39,15 +39,7 @@ router.post(
         return res.status(400).json({ errors: errors.array() });
       }
 
-      const {
-        firstname,
-        lastname,
-        email,
-        password,
-        phone,
-        status = 'Silver',
-        loyalityPoints = 100
-      } = req.body;
+      const { firstname, lastname, email, password, phone } = req.body;
 
       let user = await User.findOne({ email, phone });
       if (user) {
@@ -59,9 +51,7 @@ router.post(
         lastname,
         email,
         phone,
-        password,
-        status: 'Silver',
-        loyalityPoints: 100
+        password
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -86,12 +76,13 @@ router.post(
       // Send Email
 
       const output = `
-       Hello ${firstname},
-       <br/>
-       Welcome onboard, we are pleased to welcome you to the family. 
-       Welcome to the ${status} club.
-       Just to start, we are rewarding you ${loyalityPoints} loyality points, 
-        Enjoy!
+        <h2>Your Account Has been Succesfully created with follwing credentials</h2>
+        <ul>
+        <li>First Name: ${firstname}</li> 
+        <li>Last Name: ${lastname}</li> 
+        <li>Email: ${email}</li> 
+        <li>Email: ${phone}</li> 
+        </ul>
         `;
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
@@ -106,7 +97,7 @@ router.post(
 
       // send mail with defined transport object
       let info = {
-        from: '"Travoscope Hotels®" <milanchal12@gmail.com>', // sender address
+        from: '"Travoscope Hotels®" <milanchal13@gmail.com>', // sender address
         to: email, // list of receivers
         subject: 'Greetings from Travoscope Hotels!', // Subject line
         html: output // html body
