@@ -1,19 +1,35 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { loginUser } from '../../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default function LoginForm() {
+export function LoginForm({ loginUser, isAuthenticated }) {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
   const { email, password } = formData;
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    loginUser(email, password);
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="loginformcontainer">
       <p style={{ fontSize: '1.5rem' }}>Login</p>
-      <form>
+      <form onSubmit={e => onSubmit(e)}>
         <TextField
           style={{
             color: 'brown',
@@ -26,6 +42,7 @@ export default function LoginForm() {
           name="email"
           type="email"
           value={email}
+          onChange={e => onChange(e)}
           required
         />
         <br />
@@ -40,6 +57,7 @@ export default function LoginForm() {
           value={password}
           label="Password"
           type="password"
+          onChange={e => onChange(e)}
           required
         />
         <br />
@@ -63,3 +81,14 @@ export default function LoginForm() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+LoginForm.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+export default connect(mapStateToProps, { loginUser })(LoginForm);

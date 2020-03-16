@@ -49,8 +49,9 @@ router.post(
         loyalityPoints = 100
       } = req.body;
 
-      let user = await User.findOne({ email, phone });
-      if (user) {
+      let userEmail = await User.findOne({ email });
+      let userPhone = await User.findOne({ phone });
+      if (userEmail || userPhone) {
         return res.status(400).json({ msg: 'Invalid Credential' });
       }
 
@@ -76,7 +77,7 @@ router.post(
       jwt.sign(
         payload,
         config.get('jwtToken'),
-        { expiresIn: 360000 },
+        { expiresIn: 3600000000 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });

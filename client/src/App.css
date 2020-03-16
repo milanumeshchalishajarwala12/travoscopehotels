@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css?family=Poppins|Prata|Bellota|Viaoda+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins|Prata|Cinzel|Bellota|Viaoda+Libre&display=swap');
 
 /*Alerts*/
 
@@ -27,20 +26,38 @@ h3 {
   font-weight: normal;
 }
 
+.logoandauth {
+  height: 3rem;
+  width: 100%;
+  position: relative;
+}
+
+.logo {
+  background: url('./img/logo1.jpg') no-repeat center/cover;
+  width: 4rem;
+  height: 3rem;
+  float: left;
+  margin-left: 30px;
+}
+
+.auth li {
+  float: right;
+  display: block;
+  margin: 0rem 1rem 0rem 1rem;
+}
 /*Top Navigation Bar*/
 .topnavbar {
   overflow: hidden;
-  position: fixed;
-  z-index: +1;
+  position: relative;
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   margin: 0px;
   padding: 0px;
-  background: rgba(0, 0, 0, 0.99);
-}
-
-.topnavbar:hover {
-  transition-duration: 500ms;
+  background: linear-gradient(
+    180deg,
+    rgba(161, 158, 158, 1) 0%,
+    rgba(233, 233, 233, 0) 84%
+  );
 }
 
 .topnavbar p {
@@ -52,11 +69,9 @@ h3 {
   float: right;
   text-decoration: none;
   display: flex;
-  color: white;
-  text-align: center;
-  padding: 1.2rem 0rem 1.2rem 0rem;
-  margin: 0px 7px 0px 7px;
-  font-size: 1rem;
+  color: black;
+  margin: 20px 10px 20px 10px;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -65,15 +80,25 @@ li:visited {
 }
 
 .topnavbar li:hover {
-  padding-bottom: 0.3rem;
   cursor: pointer;
-  border-bottom: 1px solid white;
 }
 
 .navlogo {
-  width: 200px;
-  height: 60px;
+  text-align: center;
+  width: 12rem;
+  height: 5rem;
+  margin: 0px 30px 30px 30px;
   float: left;
+  color: #373737;
+  background: #6d7993;
+  transition-duration: 500ms;
+}
+
+.navlogo p {
+  margin: 0px 12px 0px 12px;
+}
+.navlogo li {
+  color: white;
 }
 
 /* Bottom Bar*/
@@ -86,9 +111,24 @@ li:visited {
 
 /*Landing Page*/
 
+.landingsection1text {
+  box-sizing: border-box;
+  height: 10rem;
+  width: 20rem;
+  float: left;
+  margin: 100px 70px 0px 70px;
+  background: rgb(233, 233, 233, 0.8);
+  padding: 0.8rem;
+}
+
+.landingsection1text p {
+  font-family: 'Cinzel';
+  font-size: 2.3rem;
+}
+
 .landing {
   background: url('./img/landing.jpg') no-repeat center/cover;
-  height: 50rem;
+  height: 40rem;
   margin: 0px;
   padding: 0px;
 }
@@ -115,7 +155,7 @@ select {
   padding: 1.5rem;
   border-radius: 3px;
   margin: 50px 120px 50px 120px;
-  background: black;
+  background: #373737;
   color: white;
   position: absolute;
   z-index: 0;
@@ -142,7 +182,7 @@ select {
   padding: 2rem;
   text-align: center;
   font-size: 1.3rem;
-  margin: 30px 310px 30px 310px;
+  margin: 30px 310px 30px 350px;
   border-radius: 2px;
   font-family: 'Caveat';
 }
@@ -243,7 +283,6 @@ select {
 
 .signuppage {
   padding: 1rem;
-  background-color: seashell;
 }
 
 .signupcontainer {

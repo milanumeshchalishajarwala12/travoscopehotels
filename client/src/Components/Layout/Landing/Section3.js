@@ -8,7 +8,7 @@ export default function Section3() {
         <p>Relax. Refresh. Recharge.</p>
 
         <p style={{ color: 'black', fontSize: '0.9rem' }}>
-          <Link to="/listofamenities">EXPLORE AMENITIES</Link>
+          <Link to="/listofamenities">EXPLORE AM ENITIES</Link>
         </p>
       </div>
     </div>

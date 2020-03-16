@@ -4,58 +4,11 @@ const Room = require('../../Models/Rooms');
 const { check, validationResult } = require('express-validator');
 const moment = require('moment');
 
-//Add rooms
-
-router.post(
-  '/',
-  [
-    check('destination', 'Valid destination not found')
-      .not()
-      .isEmpty(),
-    check('roomtype', 'Valid room type not found')
-      .not()
-      .isEmpty(),
-    check('isAvailable', 'Valid availability not found')
-      .not()
-      .isEmpty(),
-    check('pricepernight', 'Valid price not found')
-      .not()
-      .isEmpty()
-  ],
-
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-      const { destination, isAvailable, roomtype, pricepernight } = req.body;
-
-      room = new Room({
-        destination,
-        isAvailable,
-        roomtype,
-        pricepernight
-      });
-
-      await room.save();
-
-      console.log('Success');
-      return res.status(200).json({ room });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
-
 //Get Rooms
 
 router.get('/', async (req, res) => {
   try {
-    const isAvailable = 'true';
-
-    const rooms = await Room.aggregate({ isAvailable });
+    const rooms = await Room.find();
     if (rooms.length > 0) {
       res.json(rooms);
     } else {

@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import BookingForm from '../Forms/BookingForm';
+import { Link } from 'react-router-dom';
+import BookingForm from '../../Forms/BookingForm';
+import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
 import LandingFooter from './LandingFooter';
@@ -8,9 +10,7 @@ class Landing extends Component {
   render() {
     return (
       <Fragment>
-        <section className="landing">
-          <BookingForm />
-        </section>
+        <Section1 />
         <div className="section12">
           <p
             style={{
@@ -31,6 +31,7 @@ class Landing extends Component {
         <div>
           <Section2 />
         </div>
+        {/* */}
         <div style={{ height: '7rem', width: '100%' }}></div>
         <div className="section12">
           <p

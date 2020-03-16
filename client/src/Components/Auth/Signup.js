@@ -24,9 +24,9 @@ export const Signup = ({ registerUser }) => {
   };
 
   const onSubmit = e => {
-    if (password !== password2) {
-      e.preventDefault();
+    e.preventDefault();
 
+    if (password !== password2) {
       alert('Passwords do not match');
     } else {
       registerUser({ firstname, lastname, email, phone, password });

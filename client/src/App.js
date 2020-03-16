@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './App.css';
-import Landing from './Components/Layout/Landing';
+import Landing from './Components/Layout/Landing/Landing';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
 import TopNavBar from './Components/Layout/TopNavBar';
 import AboutUs from './Components/Layout/AboutUs';
 import ContactUs from './Components/Layout/ContactUs';
@@ -15,18 +16,25 @@ import ListOfRooms from './Components/Layout/ListOfRooms';
 import { Provider } from 'react-redux';
 import store from './store';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-          <section className="navbar">
+          <div className="navbar">
             <TopNavBar />
-          </section>
+          </div>
 
           <Route exact path="/" component={Landing} />
           <Route exact path="/listofrooms" component={ListOfRooms} />
-
           <Switch>
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contactus" component={ContactUs} />
