@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/rooms', require('./Routes/api/rooms'));
 app.use('/api/users', require('./Routes/api/users'));
+app.use('/api/admin', require('./Routes/api/admin'));
+app.use('/api/auth', require('./Routes/api/auth'));
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

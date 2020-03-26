@@ -3,8 +3,7 @@ const router = express.Router();
 const Room = require('../../Models/Rooms');
 const { check, validationResult } = require('express-validator');
 
-//Add rooms
-
+//Add rooms to database
 router.post(
   '/',
   [
@@ -14,9 +13,7 @@ router.post(
     check('roomtype', 'Valid room type not found')
       .not()
       .isEmpty(),
-    check('isAvailable', 'Valid availability not found')
-      .not()
-      .isEmpty(),
+
     check('pricepernight', 'Valid price not found')
       .not()
       .isEmpty()
@@ -28,11 +25,10 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { destination, roomtype, isAvailable, pricepernight } = req.body;
+      const { destination, roomtype, pricepernight } = req.body;
 
       room = new Room({
         destination,
-        isAvailable,
         roomtype,
         pricepernight
       });
@@ -46,13 +42,10 @@ router.post(
   }
 );
 
-//Get Rooms
-
+//Get Rooms from database
 router.get('/', async (req, res) => {
   try {
-    const isAvailable = 'true';
-
-    const rooms = await Room.find({ isAvailable });
+    const rooms = await Room.find();
     if (rooms.length > 0) {
       res.json(rooms);
     } else {
