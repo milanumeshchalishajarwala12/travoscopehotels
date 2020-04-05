@@ -5,6 +5,7 @@ const Admin = require('../../Models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../../Middleware/auth');
 
 // @route POST api/auth
 // @desc Login a User/Authorize a user and get token in return
@@ -61,12 +62,15 @@ router.post(
   }
 );
 
-router.get('/', async (req, res) => {
+// @route Get api/auth
+// @desc Load admin
+// @access Public
+
+router.get('/', auth, async (req, res) => {
   try {
     const admin = await Admin.findById(req.admin.id).select('-password');
-    res.json({ admin });
+    return res.json({ Admin: admin });
   } catch (err) {
-    console.log(err.message);
     return res.status(500).send('Server Error');
   }
 });

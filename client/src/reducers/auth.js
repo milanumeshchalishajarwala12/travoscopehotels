@@ -2,7 +2,8 @@ import {
   ADMIN_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  LOGOUT
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   loading: true,
   admin: null
 };
+
 export default function(state = initialState, action) {
   const { type, payload } = action;
 
@@ -34,6 +36,7 @@ export default function(state = initialState, action) {
 
     case LOGIN_FAILURE:
     case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,

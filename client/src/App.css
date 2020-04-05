@@ -18,6 +18,7 @@ a {
 
 .adminloginpage {
   background: white;
+  height: auto;
   padding-top: 60px;
 }
 
@@ -33,7 +34,7 @@ a {
   width: 20rem;
   background: #f4f4f4;
   border-radius: 4%;
-  margin: 4rem 34rem 10rem 34rem;
+  margin: 4rem 34rem 0rem 34rem;
 }
 
 .navlogo {
@@ -52,7 +53,7 @@ a {
   margin: 0px;
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: auto;
   height: 6rem;
   background: linear-gradient(
     180deg,
@@ -73,4 +74,140 @@ a {
 
 .adminnavbar li:hover {
   cursor: pointer;
+}
+
+/*Function selection page*/
+
+.usersfunc,
+.roomsfunc,
+.destinationsfunc,
+.stafffunc {
+  height: 4rem;
+  width: 30rem;
+  background: rgb(218, 215, 214);
+  border-radius: 5px;
+  border: 1px solid #373737;
+  margin: 50px 500px 0px 500px;
+  padding-top: 0.5rem;
+}
+
+.usersfunc,
+.roomsfunc,
+.destinationsfunc,
+.stafffunc,
+.h2 {
+  font-size: 1.5rem;
+  color: #373737;
+  text-align: center;
+  font-family: 'Prata';
+}
+
+/*Room layout*/
+
+.roomcontainer {
+  padding: 0.2rem;
+  position: relative;
+  box-sizing: border-box;
+  width: 80%;
+  height: 7rem;
+  margin: 5px 150px 5px 150px;
+  border: 2px solid rgb(112, 175, 196);
+  background: whitesmoke;
+}
+
+.roomcontainertop {
+  padding: 0.2rem;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 2rem;
+  margin: 10px 00px 20px 00px;
+  border: 2px solid rgb(112, 175, 196);
+  background: white;
+}
+
+.roomcontainer h2 {
+  font-size: 0.3rem;
+  font-family: 'Times New Roman ', serif;
+}
+
+.roomcontainer p {
+  top: 0px;
+  font-size: 1rem;
+}
+
+.roomcontainer ul {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-family: 'Bellota', cursive;
+}
+
+.employeecontainer {
+  width: 70%;
+  margin: 20px 150px 10px 200px;
+  background: #9099a2;
+  opacity: 0.7;
+  padding: 2rem;
+  border-radius: 5px;
+  color: white;
+  height: 20rem;
+}
+
+.usercontainer {
+  width: 70%;
+  margin: 20px 150px 10px 200px;
+  background: #9099a2;
+  opacity: 0.7;
+  padding: 2rem;
+  border-radius: 5px;
+  color: white;
+  height: 9rem;
+}
+
+.addemployeeformcontainer {
+  margin: 7px 25px 0px 475px;
+  box-sizing: border-box;
+  height: 47rem;
+  width: 30rem;
+  padding: 1rem;
+  background: white;
+  color: white;
+  position: absolute;
+  transition-duration: 500ms;
+  border-radius: 10px;
+  border: 0.04rem solid black;
+}
+.addemployeeform p {
+  font-family: 'Playfair Display';
+  font-size: 1.2rem;
+  color: #565656;
+}
+
+.vl1 {
+  border-left: 1px solid black;
+  height: 20rem;
+  position: absolute;
+  left: 33%;
+  top: 20%;
+}
+
+.vl2 {
+  border-left: 1px solid black;
+  height: 20rem;
+  position: absolute;
+  left: 65%;
+  top: 20%;
+}
+
+.functionbox {
+  display: inline-block;
+  width: 26rem;
+  height: 10rem;
+  border-radius: 5px;
+  border: 1px solid #373737;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20px;
+  font-family: 'Times New Roman', Times, serif;
 }

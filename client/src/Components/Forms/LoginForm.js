@@ -78,7 +78,7 @@ export function LoginForm({ auth: { isAuthenticated }, adminLogin }) {
 
 LoginForm.propTypes = {
   adminLogin: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.object.isRequired
+  isAuthenticated: PropTypes.object
 };
 
 const mapStateToProps = state => ({
