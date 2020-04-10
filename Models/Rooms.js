@@ -3,47 +3,47 @@ const mongoose = require('mongoose');
 const RoomSchema = new mongoose.Schema({
   destination: {
     type: String,
-    required: true
+    required: true,
   },
   roomtype: {
     type: String,
-    required: true
+    required: true,
   },
   isAvailable: {
     type: Boolean,
     required: true,
-    default: true
+    default: true,
   },
   pricepernight: {
     type: Number,
-    required: true
+    required: true,
   },
   amenities: [
     {
       wifi: {
         type: Boolean,
-        isAvailable: true
-      }
+        isAvailable: true,
+      },
     },
     {
       jacuzi: {
         type: Boolean,
-        isAvailable: true
-      }
+        isAvailable: true,
+      },
     },
     {
       laundry: {
         type: Boolean,
-        isAvailable: true
-      }
+        isAvailable: true,
+      },
     },
     {
       airportPickupDrop: {
         type: Boolean,
-        isAvailable: true
-      }
-    }
-  ]
+        isAvailable: true,
+      },
+    },
+  ],
 });
 
 module.exports = Room = mongoose.model('room', RoomSchema);

@@ -14,14 +14,22 @@ const cors = require('cors');
 //const client = new twilio(accountSid, authToken);
 
 router.use(cors());
+/*
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find();
+    return res.status(201).send(users);
+  } catch (err) {
+    return res.status(404).send(err.message);
+  }
+});
+*/
 
 router.post(
   '/',
 
   [
-    check('firstname', 'First name is required')
-      .not()
-      .isEmpty(),
+    check('firstname', 'First name is required').not().isEmpty(),
     check('email', 'Valid email is required').isEmail(),
     check(
       'password',
@@ -30,7 +38,7 @@ router.post(
     check('phone', 'Enter valid phone number')
       .not()
       .isEmpty()
-      .isLength({ max: 10, min: 10 })
+      .isLength({ max: 10, min: 10 }),
   ],
   async (req, res) => {
     try {
@@ -46,7 +54,7 @@ router.post(
         password,
         phone,
         status = 'Silver',
-        loyalityPoints = 100
+        loyalityPoints = 100,
       } = req.body;
 
       let userEmail = await User.findOne({ email });
@@ -62,7 +70,7 @@ router.post(
         phone,
         password,
         status: 'Silver',
-        loyalityPoints: 100
+        loyalityPoints: 100,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -70,8 +78,8 @@ router.post(
       await user.save();
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jwt.sign(
@@ -101,8 +109,8 @@ router.post(
         secure: false, // true for 465, false for other ports
         auth: {
           user: 'milanchal12@gmail.com', // generated ethereal user
-          pass: 'Starbucks$6' // generated ethereal password
-        }
+          pass: 'Starbucks$6', // generated ethereal password
+        },
       });
 
       // send mail with defined transport object
@@ -110,7 +118,7 @@ router.post(
         from: '"Travoscope Hotels®" <milanchal12@gmail.com>', // sender address
         to: email, // list of receivers
         subject: 'Greetings from Travoscope Hotels!', // Subject line
-        html: output // html body
+        html: output, // html body
       };
 
       transporter.sendMail(info, (error, info) => {

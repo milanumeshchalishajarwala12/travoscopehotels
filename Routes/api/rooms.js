@@ -8,7 +8,23 @@ const moment = require('moment');
 
 router.get('/', async (req, res) => {
   try {
-    const rooms = await Room.find();
+    const rooms = await Room.find().sort('destination');
+    if (rooms.length > 0) {
+      res.json(rooms);
+    } else {
+      return res.json({ msg: 'No rooms found' });
+    }
+  } catch (err) {
+    return res.status(400).json({ msg: err.message });
+  }
+});
+
+router.post('/search', async (req, res) => {
+  try {
+    const { destination, checkindate, checkoutdate, noofguests } = req.body;
+    const rooms = await Room.find({ destination: destination }).sort(
+      'priceperday'
+    );
     if (rooms.length > 0) {
       res.json(rooms);
     } else {

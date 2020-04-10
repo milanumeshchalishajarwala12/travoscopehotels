@@ -11,10 +11,18 @@ import Destinations from './Components/Layout/Destinations';
 import Login from './Components/Auth/Login';
 import Signup from './Components/Auth/Signup';
 import ListOfRooms from './Components/Layout/ListOfRooms';
+import Makeareservation from './Components/Layout/Makeareservation';
+import ListofCusines from './Components/Layout/ListOfCuisines';
+import Summary from './Components/Layout/Summary';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUserDetails } from './actions/user';
+import AddGuestInfo from './Components/Layout/AddGuestInfo';
+import Confirmation from './Components/Layout/Confirmation';
+import Mybookings from './Components/Layout/Mybookings';
+import CheckIn from './Components/Layout/CheckIn';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -23,6 +31,7 @@ if (localStorage.token) {
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadUserDetails());
   }, []);
 
   return (
@@ -41,6 +50,18 @@ function App() {
             <Route exact path="/destinations" component={Destinations} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/listofcusines" component={ListofCusines} />
+            <Route exact path="/addguestinfo" component={AddGuestInfo} />
+            <Route exact path="/summary" component={Summary} />
+            <Route exact path="/confirmationpage" component={Confirmation} />
+            <Route exact path="/mybookings" component={Mybookings} />
+            <Route exact path="/checkin" component={CheckIn} />
+
+            <Route
+              exact
+              path="/makeareservation"
+              component={Makeareservation}
+            />
           </Switch>
         </Fragment>
       </Router>
