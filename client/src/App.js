@@ -14,6 +14,8 @@ import ListOfRooms from './Components/Layout/ListOfRooms';
 import Makeareservation from './Components/Layout/Makeareservation';
 import ListofCusines from './Components/Layout/ListOfCuisines';
 import Summary from './Components/Layout/Summary';
+import Order from './Components/Layout/Order';
+import OrderSummary from './Components/Layout/OrderSummary';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -23,6 +25,10 @@ import AddGuestInfo from './Components/Layout/AddGuestInfo';
 import Confirmation from './Components/Layout/Confirmation';
 import Mybookings from './Components/Layout/Mybookings';
 import CheckIn from './Components/Layout/CheckIn';
+import { getBookings } from './actions/booking';
+import Amenities from './Components/Layout/Amenities';
+import BookSlot from './Components/Layout/BookSlot';
+import Dining from './Components/Layout/Dining';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -32,6 +38,7 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
     store.dispatch(loadUserDetails());
+    store.dispatch(getBookings());
   }, []);
 
   return (
@@ -54,8 +61,13 @@ function App() {
             <Route exact path="/addguestinfo" component={AddGuestInfo} />
             <Route exact path="/summary" component={Summary} />
             <Route exact path="/confirmationpage" component={Confirmation} />
-            <Route exact path="/mybookings" component={Mybookings} />
+            <Route exact path="/profile" component={Mybookings} />
             <Route exact path="/checkin" component={CheckIn} />
+            <Route exact path="/amenities" component={Amenities} />
+            <Route exact path="/bookslot" component={BookSlot} />
+            <Route exact path="/dining" component={Dining} />
+            <Route exact path="/order" component={Order} />
+            <Route exact path="/ordersummary" component={OrderSummary} />
 
             <Route
               exact

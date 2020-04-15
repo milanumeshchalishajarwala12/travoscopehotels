@@ -11,7 +11,7 @@ const Summary = ({
   confirmBooking,
   addBookingToUser,
   auth: { isAuthenticated },
-  user: { email, isCheckedIn },
+  user: { email, isCheckedIn }
 }) => {
   var isCheckedIn = false;
   var isCheckedOut = false;
@@ -52,7 +52,7 @@ const Summary = ({
   var pricepernight = localStorage.getItem('pricepernight');
   var loyalitypoints = localStorage.getItem('loyalityPoints');
 
-  const onConfirm = (e) => {
+  const onConfirm = e => {
     if (isAuthenticated == false) {
       confirmBooking(
         firstname,
@@ -118,7 +118,7 @@ const Summary = ({
         style={{
           margin: '30px',
           fontSize: '2.6rem',
-          fontFamily: 'Prata',
+          fontFamily: 'Prata'
         }}
       >
         Booking Summary
@@ -161,7 +161,7 @@ const Summary = ({
             <p
               style={{
                 display: 'inline',
-                fontSize: '1rem',
+                fontSize: '1rem'
               }}
             >
               {firstname} {lastname}
@@ -241,7 +241,7 @@ const Summary = ({
       </div>
       <div
         style={{
-          background: 'rgb(243, 243, 243)',
+          background: 'rgb(243, 243, 243)'
         }}
         className="summarycontainer"
       >
@@ -258,7 +258,7 @@ const Summary = ({
                   border: '0.5px solid white',
                   width: '24rem',
                   height: 'auto',
-                  margin: '0rem 1rem 0rem 0.5rem',
+                  margin: '0rem 1rem 0rem 0.5rem'
                 }}
                 name="name"
                 type="text"
@@ -276,7 +276,7 @@ const Summary = ({
                   border: '0.5px solid white',
                   width: '24rem',
                   height: 'auto',
-                  margin: '0rem 1rem 0rem 0.5rem',
+                  margin: '0rem 1rem 0rem 0.5rem'
                 }}
                 name="cardnumber"
                 type="number"
@@ -294,7 +294,7 @@ const Summary = ({
                   border: '0.5px solid white',
                   width: '10rem',
                   height: 'auto',
-                  margin: '0rem 1rem 0rem 0.5rem',
+                  margin: '0rem 1rem 0rem 0.5rem'
                 }}
                 name="exp"
                 type="text"
@@ -312,7 +312,7 @@ const Summary = ({
                   border: '0.5px solid white',
                   width: '10rem',
                   height: 'auto',
-                  margin: '0rem 1rem 0rem 0.5rem',
+                  margin: '0rem 1rem 0rem 0.5rem'
                 }}
                 name="cvv"
                 type="number"
@@ -326,7 +326,7 @@ const Summary = ({
       <div>
         <Link to="/confirmationpage">
           <Button
-            onClick={(e) => onConfirm()}
+            onClick={e => onConfirm()}
             style={{
               fontSize: '1.1rem',
               background: '#373737',
@@ -335,7 +335,7 @@ const Summary = ({
               border: '0.5px solid white',
               width: '20rem',
               height: '4rem',
-              margin: '2rem',
+              margin: '2rem'
             }}
           >
             Confirm Details and Book{' '}
@@ -350,12 +350,12 @@ Summary.propTypes = {
   confirmBooking: PropTypes.func.isRequired,
   addBookingToUser: PropTypes.func.isRequired,
   auth: PropTypes.func,
-  user: PropTypes.func,
+  user: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
-  user: state.user,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { confirmBooking, addBookingToUser })(

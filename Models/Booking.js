@@ -3,70 +3,75 @@ const mongoose = require('mongoose');
 const BookingSchema = new mongoose.Schema({
   destination: {
     type: String,
-    required: true,
+    required: true
   },
   roomnumber: {
     type: Number,
-    required: true,
+    required: true
   },
   roomtype: {
     type: String,
-    required: true,
+    required: true
   },
   pricepernight: {
     type: Number,
-    required: true,
+    required: true
   },
   fullname: {
     type: String,
-    required: true,
+    required: true
   },
   noofguests: { type: Number, required: true },
 
   email: {
     type: String,
-    required: true,
+    required: true
   },
   phone: {
     type: Number,
-    required: true,
+    required: true
   },
   status: {
-    type: String,
+    type: String
   },
   loyalityPoints: {
-    type: Number,
+    type: Number
   },
   checkindate: {
     type: Date,
-    required: true,
+    required: true
   },
   checkoutdate: {
     type: Date,
-    required: true,
+    required: true
   },
   dateofbooking: {
-    type: Date,
+    type: Date
   },
   address: {
     type: String,
-    required: true,
+    required: true
   },
   total: {
     type: Number,
+    required: true
+  },
+  additionalcosts: {
+    type: Number,
     required: true,
+    default: 0
   },
   isCheckedIn: {
     type: Boolean,
     required: true,
-    default: false,
+    default: false
   },
   isCheckedOut: {
     type: Boolean,
     required: true,
-    default: false,
+    default: false
   },
-  additionalBookings: [],
+  additionalBookings: []
 });
 
 module.exports = Booking = mongoose.model('booking', BookingSchema);

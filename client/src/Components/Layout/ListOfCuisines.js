@@ -1,16 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ListOfCuisines = props => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-ListOfCuisines.propTypes = {
+ListOfCuisines.propTypes = {};
 
-}
-
-export default ListOfCuisines
+export default ListOfCuisines;

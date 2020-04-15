@@ -8,7 +8,7 @@ import { loginUser } from '../../actions/auth';
 
 const GuestInfoForm = ({
   auth: { isAuthenticated },
-  user: { firstname, lastname, email, phone, loyalityPoints, status },
+  user: { firstname, lastname, email, phone, loyalityPoints, status }
 }) => {
   const [formData, setFormData] = useState({
     firstname: '',
@@ -19,7 +19,7 @@ const GuestInfoForm = ({
     str2: '',
     city: '',
     state: '',
-    zip: '',
+    zip: ''
   });
 
   const {
@@ -31,14 +31,14 @@ const GuestInfoForm = ({
     str2,
     city,
     state,
-    zip,
+    zip
   } = formData;
 
-  const onChange = (e) => {
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onProceed = (e) => {
+  const onProceed = e => {
     localStorage.setItem('firstname', Ufirstname || firstname);
     localStorage.setItem('lastname', Ulastname || lastname);
     localStorage.setItem('Uemail', Uemail || email);
@@ -64,7 +64,7 @@ const GuestInfoForm = ({
                   <p
                     style={{
                       display: 'inline',
-                      fontSize: '1rem',
+                      fontSize: '1rem'
                     }}
                   >
                     {firstname} {lastname}
@@ -81,7 +81,7 @@ const GuestInfoForm = ({
                 <p>
                   Loyality Points:{' '}
                   <p style={{ display: 'inline', fontSize: '1rem' }}>
-                    {loyalityPoints}
+                    {parseInt(loyalityPoints)}
                   </p>
                 </p>
                 <p>
@@ -104,12 +104,12 @@ const GuestInfoForm = ({
                     border: '0.5px solid white',
                     width: '14rem',
                     height: 'auto',
-                    margin: '0rem 1rem 0rem 0.5rem',
+                    margin: '0rem 1rem 0rem 0.5rem'
                   }}
                   name="Ufirstname"
                   type="text"
                   value={Ufirstname}
-                  onChange={(e) => onChange(e)}
+                  onChange={e => onChange(e)}
                   required
                 />
               </div>
@@ -124,12 +124,12 @@ const GuestInfoForm = ({
                     border: '0.5px solid white',
                     width: '14rem',
                     height: 'auto',
-                    margin: '0rem 1rem 0rem 0.5rem',
+                    margin: '0rem 1rem 0rem 0.5rem'
                   }}
                   name="Ulastname"
                   type="text"
                   value={Ulastname}
-                  onChange={(e) => onChange(e)}
+                  onChange={e => onChange(e)}
                   required
                 />
               </div>
@@ -144,12 +144,12 @@ const GuestInfoForm = ({
                       border: '0.5px solid white',
                       width: '14rem',
                       height: 'auto',
-                      margin: '0rem 1rem 0rem 0.5rem',
+                      margin: '0rem 1rem 0rem 0.5rem'
                     }}
                     name="Uemail"
                     type="email"
                     value={Uemail}
-                    onChange={(e) => onChange(e)}
+                    onChange={e => onChange(e)}
                     required
                   />
                 </div>
@@ -165,12 +165,12 @@ const GuestInfoForm = ({
                       border: '0.5px solid white',
                       width: '14rem',
                       height: 'auto',
-                      margin: '0rem 1rem 0rem 0.5rem',
+                      margin: '0rem 1rem 0rem 0.5rem'
                     }}
                     name="Uphone"
                     type="number"
                     value={Uphone}
-                    onChange={(e) => onChange(e)}
+                    onChange={e => onChange(e)}
                     required
                   />
                 </div>
@@ -188,12 +188,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '40rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               name="str1"
               type="text"
               value={str1}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -208,12 +208,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '40rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               name="str2"
               type="text"
               value={str2}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
             />
           </div>
           <br />
@@ -227,12 +227,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               name="city"
               type="text"
               value={city}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -246,12 +246,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               name="state"
               type="text"
               value={state}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -265,13 +265,13 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               name="zip"
               type="number"
               max="6"
               value={zip}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -280,7 +280,7 @@ const GuestInfoForm = ({
             {' '}
             <Link to="/summary">
               <Button
-                onClick={(e) => onProceed(e)}
+                onClick={e => onProceed(e)}
                 style={{
                   background: '#373737',
                   color: 'white',
@@ -288,7 +288,7 @@ const GuestInfoForm = ({
                   border: '0.5px solid white',
                   width: '14rem',
                   height: '4rem',
-                  margin: '2rem',
+                  margin: '2rem'
                 }}
               >
                 Proceed To Summary
@@ -303,12 +303,12 @@ const GuestInfoForm = ({
 
 GuestInfoForm.propTypes = {
   user: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.user,
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, {})(GuestInfoForm);

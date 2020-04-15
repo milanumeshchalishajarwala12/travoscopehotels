@@ -3,6 +3,8 @@ import {
   BOOKING_FAILURE,
   FETCH_ERROR,
   GET_BOOKINGS,
+  CHECKIN_SUCCESS,
+  GET_ADDBOOKINGS
 } from '../actions/types';
 
 const initialState = {
@@ -11,18 +13,18 @@ const initialState = {
   loading: true,
   isCheckedIn: false,
   isCheckedOut: false,
-  error: {},
+  error: {}
 };
 
 export default function(state = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload, payload1 } = action;
   switch (type) {
     case BOOKING_SUCCESS: {
       return {
         ...state,
         loading: false,
 
-        bookings: payload,
+        bookings: payload
       };
     }
 
@@ -30,21 +32,28 @@ export default function(state = initialState, action) {
       return {
         ...state,
         booking: null,
-        loading: false,
+        loading: false
       };
 
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: payload,
-        loading: false,
+        bookings: payload
       };
+
+    case GET_ADDBOOKINGS:
+      return {
+        ...state
+      };
+
     case FETCH_ERROR:
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: payload
       };
+    case CHECKIN_SUCCESS:
+      return {};
 
     default:
       return state;

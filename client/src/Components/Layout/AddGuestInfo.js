@@ -10,11 +10,11 @@ import GuestInfoForm from '../Forms/GuestInfoForm';
 const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   });
 
   const { email, password } = formData;
-  const onChange = (e) => {
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
@@ -25,7 +25,7 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
             transitionDuration: '700ms',
             padding: '2rem 0rem 2rem 1rem',
             height: '7rem',
-            background: '#373737',
+            background: '#373737'
           }}
         >
           {' '}
@@ -34,7 +34,7 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
               style={{
                 color: 'white',
                 fontSize: '1.5rem',
-                fontFamily: 'Prata',
+                fontFamily: 'Prata'
               }}
             >
               Email
@@ -48,14 +48,14 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               id="email"
               label=""
               name="email"
               type="email"
               value={email}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -64,7 +64,7 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
               style={{
                 color: 'white',
                 fontSize: '1.5rem',
-                fontFamily: 'Prata',
+                fontFamily: 'Prata'
               }}
             >
               Password
@@ -78,25 +78,25 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem',
+                margin: '0rem 1rem 0rem 0.5rem'
               }}
               id="password"
               label=""
               name="password"
               type="password"
               value={password}
-              onChange={(e) => onChange(e)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
           <Button
-            onClick={(e) => loginUser(email, password)}
+            onClick={e => loginUser(email, password)}
             style={{
               background: 'rgb(235, 235, 235)',
               color: 'black',
               width: '8rem',
               height: '3rem',
-              margin: '2rem 1rem 1rem 1rem',
+              margin: '2rem 1rem 1rem 1rem'
             }}
             variant="contained"
             color="primary"
@@ -110,7 +110,7 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
               color: 'white',
               fontSize: '1.7rem',
               fontFamily: 'Prata',
-              marginLeft: '10px',
+              marginLeft: '10px'
             }}
           >
             Sign In For a Faster Checkout
@@ -128,11 +128,11 @@ const AddGuestInfo = ({ loginUser, auth: { isAuthenticated } }) => {
 
 AddGuestInfo.propTypes = {
   auth: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = state => ({
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { loginUser })(AddGuestInfo);

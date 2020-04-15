@@ -4,6 +4,6 @@ import auth from './auth';
 import user from './user';
 import room from './room';
 import booking from './booking';
-import bk from './bk';
+import location from './location';
 
-export default combineReducers({ alert, room, bk, booking, auth, user });
+export default combineReducers({ alert, room, location, booking, auth, user });

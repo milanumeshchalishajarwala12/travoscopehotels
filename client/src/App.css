@@ -27,6 +27,7 @@ h3 {
 }
 
 .logoandauth {
+  color: white;
   height: 3rem;
   width: 100%;
   position: relative;
@@ -41,23 +42,21 @@ h3 {
 }
 
 .auth li {
+  color: white;
   float: right;
   display: block;
   margin: 0rem 1rem 0rem 1rem;
 }
+
 /*Top Navigation Bar*/
 .topnavbar {
   overflow: hidden;
-  position: relative;
+  position: static;
   width: 100%;
-  height: 6rem;
+  height: 4rem;
   margin: 0px;
   padding: 0px;
-  background: linear-gradient(
-    180deg,
-    rgba(161, 158, 158, 1) 0%,
-    rgba(233, 233, 233, 0) 84%
-  );
+  background: rgba(255, 255, 255, 0.753);
 }
 
 .topnavbar li {
@@ -76,6 +75,7 @@ li:visited {
 }
 
 .topnavbar li:hover {
+  color: rgb(119, 189, 230);
   cursor: pointer;
 }
 
@@ -85,7 +85,7 @@ li:visited {
   height: 5rem;
   margin: 0px 20px 30px 30px;
   float: left;
-  color: #373737;
+  color: white;
   background: #6d7993;
   transition-duration: 500ms;
 }
@@ -95,6 +95,9 @@ li:visited {
 }
 .navlogo li {
   color: white;
+}
+.navlogo li:hover {
+  background: none;
 }
 
 .topnavbar button {
@@ -106,7 +109,6 @@ li:visited {
 }
 
 .topnavbar button:hover {
-  text-decoration: underline;
   transition-duration: 500ms;
 }
 
@@ -511,6 +513,101 @@ select {
 
 tr {
   margin: 2px 0px 2px 0px;
+}
+
+.profilecontainer {
+  width: 95%;
+  margin: 50px 20px 50px 20px;
+  height: 10rem;
+  background: #f4f4f4;
+  padding: 1.5rem;
+}
+
+.profilecontainer h2 {
+  font-family: 'Cinzel';
+}
+.profilecontainer p {
+  font-size: 1rem;
+}
+
+.spoolcontainer {
+  height: 40rem;
+  width: 96%;
+  padding: 1.5rem;
+}
+
+.spoolpicture {
+  height: 25rem;
+  width: 70%;
+  margin: 20px 225px 20px 225px;
+  background: url('./img/section3.jpg') no-repeat center/cover;
+}
+
+.spooltext {
+  height: 25rem;
+}
+
+.spooltext p {
+  font-family: 'Cinzel';
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.gympicture {
+  height: 25rem;
+  width: 70%;
+  margin: 20px 225px 20px 225px;
+  background: url('./img/gym.jpg') no-repeat center/cover;
+}
+
+.hottubpicture {
+  height: 25rem;
+  width: 70%;
+  margin: 20px 225px 20px 225px;
+  background: url('./img/hottub.jpg') no-repeat center/cover;
+}
+
+.massagepicture {
+  height: 25rem;
+  width: 70%;
+  margin: 20px 225px 20px 225px;
+  background: url('./img/massage.jpg') no-repeat center/cover;
+}
+
+.cafepicture {
+  height: 25rem;
+  width: 95%;
+  margin: 20px 35px 20px 35px;
+  background: url('./img/cafepicture.jpeg') no-repeat center/cover;
+}
+
+.cuisinebuttons {
+  width: 90%;
+  height: 20rem;
+  margin: 60px;
+  background: rgb(241, 241, 241);
+  padding: 1rem;
+}
+
+.menu {
+  width: 90%;
+  height: 25rem;
+  margin: 60px;
+  background: rgb(241, 241, 241);
+  padding: 1rem;
+}
+
+.menu h2 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.menu p {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1rem;
+  margin: 1rem;
+  text-align: center;
 }
 @media (max-width: 700px) {
   .container {

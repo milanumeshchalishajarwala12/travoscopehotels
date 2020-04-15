@@ -13,10 +13,17 @@ export const VIEW_CUISINES = 'VIEW_CUSINES';
 export const SEARCH_ROOMS = 'SEARCH_ROOMS';
 export const CLEAR_ROOMS = 'CLEAR_ROOMS';
 export const BOOKING_SUCCESS = 'BOOKING_SUCCESS';
+export const GET_MENU = 'GET_MENU';
+export const GET_CUST_MENU = 'GET_CUST_MENU';
+
 export const GET_BOOKINGS = 'GET_BOOKINGS';
+export const GET_ADDBOOKINGS = 'GET_ADDBOOKINGS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 export const MY_BOOKINGS = 'MY_BOOKINGS';
 export const GB = 'GB';
-
+export const CHECKIN_SUCCESS = 'CHECKIN_SUCCESS';
+export const CHECKIN_FAILURE = 'CHECKIN_FAILURE';
+export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS';
+export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE';
 export const BOOKING_FAILURE = 'BOOKING_FAILURE';
 export const LOGOUT = 'LOGOUT';

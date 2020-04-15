@@ -3,101 +3,101 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    required: true,
+    required: true
   },
   lastname: {
-    type: String,
+    type: String
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   phone: {
     type: Number,
     required: true,
-    unique: true,
+    unique: true
   },
   status: {
     type: String,
-    default: 'Silver',
+    default: 'Silver'
   },
   loyalityPoints: {
     type: Number,
-    default: 100,
+    default: 100
+  },
+  addtionalcharges: {
+    type: Number
   },
   bookings: [
     {
       destination: {
         type: String,
-        required: true,
+        required: true
       },
       roomnumber: {
         type: Number,
-        required: true,
+        required: true
       },
       roomtype: {
         type: String,
-        required: true,
+        required: true
       },
       pricepernight: {
         type: Number,
-        required: true,
+        required: true
       },
       fullname: {
         type: String,
-        required: true,
+        required: true
       },
       noofguests: { type: Number, required: true },
 
       email: {
         type: String,
-        required: true,
+        required: true
       },
       phone: {
         type: Number,
-        required: true,
+        required: true
       },
       status: {
-        type: String,
+        type: String
       },
       loyalityPoints: {
-        type: Number,
+        type: Number
       },
       checkindate: {
         type: Date,
-        required: true,
+        required: true
       },
       checkoutdate: {
         type: Date,
-        required: true,
+        required: true
       },
       dateofbooking: {
-        type: Date,
+        type: Date
       },
       address: {
         type: String,
-        required: true,
+        required: true
       },
       total: {
         type: Number,
-        required: true,
-      },
-    },
+        required: true
+      }
+    }
   ],
-  hasBooked: {
-    type: Boolean,
-  },
   isCheckedIn: {
-    type: Boolean,
+    type: Boolean
   },
   isCheckedOut: {
-    type: Boolean,
-  },
+    type: Boolean
+  }
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
