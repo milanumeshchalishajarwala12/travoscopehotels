@@ -3,14 +3,24 @@ const router = express.Router();
 const Order = require('../../Models/Order');
 
 router.post('/', async (req, res) => {
-  const { destination, roomnumber, orderdetails, total, orderdate } = req.body;
   try {
+    const {
+      destination,
+      roomnumber,
+      orderdetails,
+      total,
+      orderdate,
+    } = req.body;
+
+    var isComplete = false;
+
     order = new Order({
       destination,
       roomnumber,
       orderdetails,
       total,
-      orderdate
+      orderdate,
+      isComplete,
     });
     await order.save();
     return res.status(200).json({ order });
@@ -23,13 +33,13 @@ router.get('/', async (req, res) => {
   try {
     const result = await Order.find({ destination: req.body.destination });
     var orderarray = [];
-    result.map(order => {
+    result.map((order) => {
       var obj;
       var od = order.orderdetails;
       var roomno = order.roomnumber;
       obj = {
         roomnumber: roomno,
-        orderdetails: od
+        orderdetails: od,
       };
       orderarray.push(obj);
     });

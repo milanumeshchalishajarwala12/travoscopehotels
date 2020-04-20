@@ -13,22 +13,22 @@ import TextField from '@material-ui/core/TextField';
 const Order = ({
   getCustMenu,
   sendOrder,
-  location: { dish1, dish2, dish3, dish4, dish5, p1, p2, p3, p4, p5, cuisine }
+  location: { dish1, dish2, dish3, dish4, dish5, p1, p2, p3, p4, p5, cuisine },
 }) => {
   const [state, setState] = useState({
     qn1: 0,
     qn2: 0,
     qn3: 0,
     qn4: 0,
-    qn5: 0
+    qn5: 0,
   });
 
   var { qn1, qn2, qn3, qn4, qn5 } = state;
-  const handleChange = event => {
+  const handleChange = (event) => {
     const name = event.target.name;
     setState({
       ...state,
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
   var cuisine;
@@ -67,15 +67,10 @@ const Order = ({
 
   var curr_date = new Date().toISOString().substring(0, 10);
 
-  const onOrder = e => {
+  const onOrder = (e) => {
     var curr_dest = localStorage.getItem('curr_dest');
     var curr_roomnumber = localStorage.getItem('curr_roomnumber');
     sendOrder(curr_dest, curr_roomnumber, orderdetails, total, curr_date);
-    /*destination,
-      roomnumber,
-      orderdetails,
-      total,
-      orderdate */
   };
 
   return (
@@ -86,7 +81,7 @@ const Order = ({
             fontFamily: 'prata',
             fontSize: '2rem',
             textAlign: 'left',
-            margin: '4.5rem 3.5rem 2rem 3.5rem'
+            margin: '4.5rem 3.5rem 2rem 3.5rem',
           }}
         >
           Build Your Order
@@ -98,13 +93,13 @@ const Order = ({
                 fontFamily: 'prata',
                 fontSize: '1.3rem',
                 textAlign: 'center',
-                margin: ''
+                margin: '',
               }}
             >
               Choose a Cuisine
             </p>
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Italian';
                 getCustMenu(cuisine);
               }}
@@ -115,13 +110,13 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Italian{' '}
             </Button>{' '}
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Mexican';
                 getCustMenu(cuisine);
               }}
@@ -132,13 +127,13 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Mexican{' '}
             </Button>{' '}
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Thai';
                 getCustMenu(cuisine);
               }}
@@ -149,13 +144,13 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Thai{' '}
             </Button>{' '}
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Indian';
                 getCustMenu(cuisine);
               }}
@@ -166,13 +161,13 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Indian{' '}
             </Button>{' '}
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Lebanese';
                 getCustMenu(cuisine);
               }}
@@ -183,13 +178,13 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Lebanese{' '}
             </Button>{' '}
             <Button
-              onClick={e => {
+              onClick={(e) => {
                 cuisine = 'Chinese';
                 getCustMenu(cuisine);
               }}
@@ -200,7 +195,7 @@ const Order = ({
                 margin: '50px',
                 width: '25%',
                 borderRadius: '5px',
-                border: '0.5px solid black'
+                border: '0.5px solid black',
               }}
             >
               Chinese{' '}
@@ -213,7 +208,7 @@ const Order = ({
           <div>
             <div style={{ height: '45rem' }}>
               <Link
-                onClick={e => {
+                onClick={(e) => {
                   window.location.reload(true);
                 }}
               >
@@ -258,7 +253,7 @@ const Order = ({
                           style={{
                             margin: '1rem',
                             width: '4rem',
-                            height: '1rem'
+                            height: '1rem',
                           }}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -294,7 +289,7 @@ const Order = ({
                           style={{
                             margin: '1rem',
                             width: '4rem',
-                            height: '1rem'
+                            height: '1rem',
                           }}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -330,7 +325,7 @@ const Order = ({
                           style={{
                             margin: '1rem',
                             width: '4rem',
-                            height: '1rem'
+                            height: '1rem',
                           }}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -366,7 +361,7 @@ const Order = ({
                           style={{
                             margin: '1rem',
                             width: '4rem',
-                            height: '1rem'
+                            height: '1rem',
                           }}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -402,7 +397,7 @@ const Order = ({
                           style={{
                             margin: '1rem',
                             width: '4rem',
-                            height: '1rem'
+                            height: '1rem',
                           }}
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -432,7 +427,7 @@ const Order = ({
                   background: 'white',
                   height: '35rem',
                   width: '45%',
-                  float: 'right'
+                  float: 'right',
                 }}
                 className="menu"
               >
@@ -560,7 +555,7 @@ const Order = ({
                             fontFamily: 'Cambria',
                             fontSize: '1rem',
                             marginRight: '100px',
-                            textAlign: 'center'
+                            textAlign: 'center',
                           }}
                         >
                           <b>Total</b>
@@ -578,7 +573,7 @@ const Order = ({
                             fontFamily: 'Cambria',
                             fontSize: '1rem',
                             marginLeft: '100px',
-                            textAlign: 'center'
+                            textAlign: 'center',
                           }}
                         >
                           <b>${total}</b>
@@ -594,7 +589,7 @@ const Order = ({
             <div
               style={{
                 height: '30rem',
-                background: 'rgb(243, 243, 243)'
+                background: 'rgb(243, 243, 243)',
               }}
               className="summarycontainer"
             >
@@ -611,7 +606,7 @@ const Order = ({
                         border: '0.5px solid white',
                         width: '24rem',
                         height: 'auto',
-                        margin: '0rem 1rem 0rem 0.5rem'
+                        margin: '0rem 1rem 0rem 0.5rem',
                       }}
                       name="name"
                       type="text"
@@ -629,7 +624,7 @@ const Order = ({
                         border: '0.5px solid white',
                         width: '24rem',
                         height: 'auto',
-                        margin: '0rem 1rem 0rem 0.5rem'
+                        margin: '0rem 1rem 0rem 0.5rem',
                       }}
                       name="cardnumber"
                       type="number"
@@ -647,7 +642,7 @@ const Order = ({
                         border: '0.5px solid white',
                         width: '10rem',
                         height: 'auto',
-                        margin: '0rem 1rem 0rem 0.5rem'
+                        margin: '0rem 1rem 0rem 0.5rem',
                       }}
                       name="exp"
                       type="text"
@@ -665,7 +660,7 @@ const Order = ({
                         border: '0.5px solid white',
                         width: '10rem',
                         height: 'auto',
-                        margin: '0rem 1rem 0rem 0.5rem'
+                        margin: '0rem 1rem 0rem 0.5rem',
                       }}
                       name="cvv"
                       type="number"
@@ -677,7 +672,7 @@ const Order = ({
                     <div style={{ height: '20rem' }}>
                       <Link to="/ordersummary">
                         <Button
-                          onClick={e => {
+                          onClick={(e) => {
                             onOrder(e);
                           }}
                           style={{
@@ -685,7 +680,7 @@ const Order = ({
                             background: 'black',
                             color: 'white',
                             height: '3rem',
-                            width: '20rem'
+                            width: '20rem',
                           }}
                         >
                           Confirm Order and Pay
@@ -707,9 +702,9 @@ const Order = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   location: state.location,
-  booking: state.booking
+  booking: state.booking,
 });
 
 Order.propTypes = {
@@ -717,7 +712,7 @@ Order.propTypes = {
   location: PropTypes.object.isRequired,
   clearState: PropTypes.func.isRequired,
   sendOrder: PropTypes.func.isRequired,
-  booking: PropTypes.object.isRequired
+  booking: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, { getCustMenu, sendOrder, clearState })(

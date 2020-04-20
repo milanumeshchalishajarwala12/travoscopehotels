@@ -9,7 +9,7 @@ import {
   CHECKIN_SUCCESS,
   CHECKIN_FAILURE,
   CHECKOUT_SUCCESS,
-  CHECKOUT_FAILURE
+  CHECKOUT_FAILURE,
 } from './types';
 import axios from 'axios';
 import { loadUser } from './auth';
@@ -31,20 +31,24 @@ export const confirmBooking = (
   checkindate,
   checkoutdate,
   address,
-  total
-) => async dispatch => {
+  subtotalprice,
+  tax,
+  total,
+  isCheckedIn,
+  isCheckedOut
+) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({
     firstname,
+    bedtype,
     destination,
     roomnumber,
     roomtype,
-    bedtype,
     pricepernight,
     fullname,
     noofguests,
@@ -55,7 +59,11 @@ export const confirmBooking = (
     checkindate,
     checkoutdate,
     address,
-    total
+    subtotalprice,
+    tax,
+    total,
+    isCheckedIn,
+    isCheckedOut,
   });
   try {
     const booking = await axios.post('/api/bookings', body, config);
@@ -70,7 +78,7 @@ export const confirmBooking = (
     console.log(err.message);
 
     dispatch({
-      type: BOOKING_FAILURE
+      type: BOOKING_FAILURE,
     });
   }
 };
@@ -87,11 +95,11 @@ export const addBookingToUser = (
   checkoutdate,
   address,
   total
-) => async dispatch => {
+) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({
@@ -105,7 +113,7 @@ export const addBookingToUser = (
     checkindate,
     checkoutdate,
     address,
-    total
+    total,
   });
   console.log(body);
   try {
@@ -116,16 +124,16 @@ export const addBookingToUser = (
     console.log(err.message);
 
     dispatch({
-      type: BOOKING_FAILURE
+      type: BOOKING_FAILURE,
     });
   }
 };
 
-export const getBookings = email => async dispatch => {
+export const getBookings = (email) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({ email });
 
@@ -133,36 +141,39 @@ export const getBookings = email => async dispatch => {
     const bookings = await axios.post('/api/bookings/mybookings', body, config);
     dispatch({
       type: GET_BOOKINGS,
-      payload: bookings.data
+      payload: bookings.data,
     });
     dispatch(loadUser());
     dispatch(loadUserDetails());
   } catch (err) {
     dispatch({
-      type: FETCH_ERROR
+      type: FETCH_ERROR,
     });
   }
 };
 
-export const checkUserIn = (id, email) => async dispatch => {
+export const checkUserIn = (id, email) => async (dispatch) => {
+  console.log('FUnc');
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
-  const body = JSON.stringify({ id, email });
+  const body = JSON.stringify({
+    id,
+    email,
+  });
   const booking = await axios.post(`api/bookings/checkbookingin`, body, config);
+
   dispatch(loadUser());
   dispatch(loadUserDetails());
-
-  console.log(booking.data.isCheckedIn);
 };
 
-export const checkUserOut = (id, email) => async dispatch => {
+export const checkUserOut = (id, email) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({ id, email });
   const booking = await axios.post(
@@ -187,12 +198,12 @@ export const bookSlot = (
   total,
   fullname,
   isAuthenticated
-) => async dispatch => {
+) => async (dispatch) => {
   total = total + massagetotal;
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({
     email,
@@ -205,7 +216,7 @@ export const bookSlot = (
     massagetotal,
     total,
     fullname,
-    isAuthenticated
+    isAuthenticated,
   });
   console.log('FC', body);
 
@@ -227,12 +238,12 @@ export const bookslotforuser = (
   massagetotal,
   total,
   fullname
-) => async dispatch => {
+) => async (dispatch) => {
   console.log('FC');
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({
     email,
@@ -244,7 +255,7 @@ export const bookslotforuser = (
     roomnumber,
     massagetotal,
     total,
-    fullname
+    fullname,
   });
   console.log('FC', body);
 
@@ -255,27 +266,63 @@ export const bookslotforuser = (
   }
 };
 
-export const getaddbookings = email => async dispatch => {
+export const getaddbookings = (email) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({
-    email
+    email,
   });
 
   try {
     const res = await axios.post('/api/bookings/getaddbookings', body, config);
     dispatch({
       type: GET_ADDBOOKINGS,
-      payload1: res.data
+      payload1: res.data,
     });
   } catch (err) {
     dispatch({
       type: FETCH_ERROR,
-      payload: err.message
+      payload: err.message,
     });
+    console.log(err.message);
+  }
+};
+
+export const checkInEmail = (
+  firstname,
+  destination,
+  bedtype,
+  roomtype,
+  checkindate,
+  checkoutdate,
+  roomnumber,
+  id,
+  email
+) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const body = JSON.stringify({
+      firstname,
+      destination,
+      bedtype,
+      roomtype,
+      checkindate,
+      checkoutdate,
+      roomnumber,
+      id,
+      email,
+    });
+    console.log('Body: ' + body);
+    const res = await axios.post('api/bookings/checkinemail', body, config);
+    console.log(res);
+  } catch (err) {
     console.log(err.message);
   }
 };

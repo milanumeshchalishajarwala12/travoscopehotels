@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import LoginForm from '../Forms/LoginForm';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export function Login() {
+const Login = ({ auth: { isAuthenticated } }) => {
   return (
     <div className="loginpage">
       <div>
@@ -14,9 +16,9 @@ export function Login() {
         <h2>Travoscope Hotels</h2>
         <p>
           Bringing people together is what we’ve done since opening our first
-          Sheraton in 1937. Now we’re deeply rooted in over 400 communities
-          across the globe. We are proud to act as a point of connection for
-          millions of travelers, many just like you. Welcome.
+          hotel in 1937. Now we’re deeply rooted in over 400 communities across
+          the globe. We are proud to act as a point of connection for millions
+          of travelers, many just like you. Welcome.
         </p>
         <div className="logintextsection"></div>
         <ul>
@@ -36,6 +38,13 @@ export function Login() {
       </div>
     </div>
   );
-}
+};
 
-export default Login;
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, {})(Login);

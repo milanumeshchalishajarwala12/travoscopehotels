@@ -15,11 +15,7 @@ const Section2 = ({ viewCusines }) => {
             color: 'orange',
             fontSize: '0.9rem',
           }}
-        >
-          <a to="/listofcuisines" onClick={(e) => viewCusines(e)}>
-            EXPLORE CUISINES ››
-          </a>
-        </p>
+        ></p>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const Room = ({
     localStorage.setItem('roomtype', roomtype);
     localStorage.setItem('bedtype', bedtype);
     localStorage.setItem('pricepernight', pricepernight);
-    localStorage.setItem('roomnumber', '000');
+    localStorage.setItem('roomnumber', roomnumber);
 
     var totalprice = parseFloat(pricepernight * localStorage.getItem('days'));
     localStorage.setItem('totalprice', totalprice);

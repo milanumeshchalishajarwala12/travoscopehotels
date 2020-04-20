@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   bookings: [],
+  addbookings: [],
   booking: null,
   loading: true,
   isCheckedIn: false,
@@ -43,7 +44,8 @@ export default function(state = initialState, action) {
 
     case GET_ADDBOOKINGS:
       return {
-        ...state
+        ...state,
+        addbookings: payload1
       };
 
     case FETCH_ERROR:

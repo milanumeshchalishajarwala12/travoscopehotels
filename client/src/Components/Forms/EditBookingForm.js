@@ -19,6 +19,7 @@ const EditBookingForm = ({ searchRooms, room: { rooms } }) => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    searchRooms(destination, noofguests);
   };
 
   const handleSubmit = () => {
@@ -38,7 +39,7 @@ const EditBookingForm = ({ searchRooms, room: { rooms } }) => {
         localStorage.setItem('noofguests', noofguests);
         localStorage.setItem('checkindate', checkindate);
         localStorage.setItem('checkoutdate', checkoutdate);
-        searchRooms(destination);
+        searchRooms(destination, noofguests);
       }
     } else {
       alert('Check-In date cannot be in Past');
@@ -107,16 +108,26 @@ const EditBookingForm = ({ searchRooms, room: { rooms } }) => {
           ></input>
           <label>No. of guests</label>
           <Select
-            style={{ width: '8rem' }}
-            name="noofguests"
+            style={{
+              backgroundColor: 'white',
+              width: '13rem',
+              padding: '0.3rem 0rem 0.3rem 1rem',
+              color: '#565656',
+              borderRadius: '5px',
+              border: '0.5px solid lightgrey',
+            }}
             value={noofguests}
             onChange={(e) => handleChange(e)}
+            name="noofguests"
           >
-            <MenuItem value="1">1</MenuItem>
-            <MenuItem value="2">2</MenuItem>
-            <MenuItem value="3">3</MenuItem>
-            <MenuItem value="4">4</MenuItem>
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
           </Select>
+
           <Button
             style={{
               backgroundColor: 'brown',

@@ -8,7 +8,7 @@ import { loginUser } from '../../actions/auth';
 
 const GuestInfoForm = ({
   auth: { isAuthenticated },
-  user: { firstname, lastname, email, phone, loyalityPoints, status }
+  user: { firstname, lastname, email, phone, loyalityPoints, status },
 }) => {
   const [formData, setFormData] = useState({
     firstname: '',
@@ -19,7 +19,7 @@ const GuestInfoForm = ({
     str2: '',
     city: '',
     state: '',
-    zip: ''
+    zip: '',
   });
 
   const {
@@ -31,14 +31,14 @@ const GuestInfoForm = ({
     str2,
     city,
     state,
-    zip
+    zip,
   } = formData;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onProceed = e => {
+  const onProceed = (e) => {
     localStorage.setItem('firstname', Ufirstname || firstname);
     localStorage.setItem('lastname', Ulastname || lastname);
     localStorage.setItem('Uemail', Uemail || email);
@@ -52,7 +52,7 @@ const GuestInfoForm = ({
     localStorage.setItem('zip', zip);
   };
   return (
-    <div className="addguestinfo">
+    <form className="addguestinfo">
       <h2>Guest Information</h2>
       <form>
         <div>
@@ -64,7 +64,7 @@ const GuestInfoForm = ({
                   <p
                     style={{
                       display: 'inline',
-                      fontSize: '1rem'
+                      fontSize: '1rem',
                     }}
                   >
                     {firstname} {lastname}
@@ -93,89 +93,91 @@ const GuestInfoForm = ({
               </div>
             </div>
           ) : (
-            <div>
-              <div style={{ display: 'inline-block', margin: '1rem' }}>
-                <TextField
-                  variant="outlined"
-                  label="Firstname"
-                  style={{
-                    background: 'white',
-                    borderRadius: '5px',
-                    border: '0.5px solid white',
-                    width: '14rem',
-                    height: 'auto',
-                    margin: '0rem 1rem 0rem 0.5rem'
-                  }}
-                  name="Ufirstname"
-                  type="text"
-                  value={Ufirstname}
-                  onChange={e => onChange(e)}
-                  required
-                />
-              </div>
+            <form>
+              <form>
+                <div style={{ display: 'inline-block', margin: '1rem' }}>
+                  <TextField
+                    variant="outlined"
+                    label="Firstname"
+                    style={{
+                      background: 'white',
+                      borderRadius: '5px',
+                      border: '0.5px solid white',
+                      width: '14rem',
+                      height: 'auto',
+                      margin: '0rem 1rem 0rem 0.5rem',
+                    }}
+                    name="Ufirstname"
+                    type="text"
+                    value={Ufirstname}
+                    onChange={(e) => onChange(e)}
+                    required
+                  />
+                </div>
 
-              <div style={{ display: 'inline-block' }}>
-                <TextField
-                  variant="outlined"
-                  label="Lastname"
-                  style={{
-                    background: 'white',
-                    borderRadius: '5px',
-                    border: '0.5px solid white',
-                    width: '14rem',
-                    height: 'auto',
-                    margin: '0rem 1rem 0rem 0.5rem'
-                  }}
-                  name="Ulastname"
-                  type="text"
-                  value={Ulastname}
-                  onChange={e => onChange(e)}
-                  required
-                />
-              </div>
-              <div>
-                <div style={{ display: 'inline-block', margin: '1rem' }}>
+                <div style={{ display: 'inline-block' }}>
                   <TextField
                     variant="outlined"
-                    label="Email"
+                    label="Lastname"
                     style={{
                       background: 'white',
                       borderRadius: '5px',
                       border: '0.5px solid white',
                       width: '14rem',
                       height: 'auto',
-                      margin: '0rem 1rem 0rem 0.5rem'
+                      margin: '0rem 1rem 0rem 0.5rem',
                     }}
-                    name="Uemail"
-                    type="email"
-                    value={Uemail}
-                    onChange={e => onChange(e)}
+                    name="Ulastname"
+                    type="text"
+                    value={Ulastname}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                 </div>
-              </div>
-              <div>
-                <div style={{ display: 'inline-block', margin: '1rem' }}>
-                  <TextField
-                    variant="outlined"
-                    label="Contact Number"
-                    style={{
-                      background: 'white',
-                      borderRadius: '5px',
-                      border: '0.5px solid white',
-                      width: '14rem',
-                      height: 'auto',
-                      margin: '0rem 1rem 0rem 0.5rem'
-                    }}
-                    name="Uphone"
-                    type="number"
-                    value={Uphone}
-                    onChange={e => onChange(e)}
-                    required
-                  />
+                <div>
+                  <div style={{ display: 'inline-block', margin: '1rem' }}>
+                    <TextField
+                      variant="outlined"
+                      label="Email"
+                      style={{
+                        background: 'white',
+                        borderRadius: '5px',
+                        border: '0.5px solid white',
+                        width: '14rem',
+                        height: 'auto',
+                        margin: '0rem 1rem 0rem 0.5rem',
+                      }}
+                      name="Uemail"
+                      type="email"
+                      value={Uemail}
+                      onChange={(e) => onChange(e)}
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
+                <div>
+                  <div style={{ display: 'inline-block', margin: '1rem' }}>
+                    <TextField
+                      variant="outlined"
+                      label="Contact Number"
+                      style={{
+                        background: 'white',
+                        borderRadius: '5px',
+                        border: '0.5px solid white',
+                        width: '14rem',
+                        height: 'auto',
+                        margin: '0rem 1rem 0rem 0.5rem',
+                      }}
+                      name="Uphone"
+                      type="number"
+                      value={Uphone}
+                      onChange={(e) => onChange(e)}
+                      required
+                    />
+                  </div>
+                </div>
+              </form>
+            </form>
           )}
           <h2 style={{ marginTop: '4rem' }}>Address Information</h2>
           <div style={{ margin: '1rem', display: 'inline-block' }}>
@@ -188,12 +190,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '40rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem'
+                margin: '0rem 1rem 0rem 0.5rem',
               }}
               name="str1"
               type="text"
               value={str1}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </div>
@@ -208,12 +210,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '40rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem'
+                margin: '0rem 1rem 0rem 0.5rem',
               }}
               name="str2"
               type="text"
               value={str2}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
             />
           </div>
           <br />
@@ -227,12 +229,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem'
+                margin: '0rem 1rem 0rem 0.5rem',
               }}
               name="city"
               type="text"
               value={city}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </div>
@@ -246,12 +248,12 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem'
+                margin: '0rem 1rem 0rem 0.5rem',
               }}
               name="state"
               type="text"
               value={state}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </div>
@@ -265,50 +267,61 @@ const GuestInfoForm = ({
                 border: '0.5px solid white',
                 width: '14rem',
                 height: 'auto',
-                margin: '0rem 1rem 0rem 0.5rem'
+                margin: '0rem 1rem 0rem 0.5rem',
               }}
               name="zip"
               type="number"
               max="6"
               value={zip}
-              onChange={e => onChange(e)}
+              onChange={(e) => onChange(e)}
               required
             />
           </div>
           <br />
           <div>
             {' '}
-            <Link to="/summary">
-              <Button
-                onClick={e => onProceed(e)}
-                style={{
-                  background: '#373737',
-                  color: 'white',
-                  borderRadius: '1px',
-                  border: '0.5px solid white',
-                  width: '14rem',
-                  height: '4rem',
-                  margin: '2rem'
-                }}
-              >
-                Proceed To Summary
-              </Button>
-            </Link>
+            {(Ufirstname || firstname) &&
+            (Ulastname || lastname) &&
+            (Uemail || email) &&
+            (Uphone || phone) &&
+            str1 &&
+            city &&
+            state &&
+            zip ? (
+              <Link to="/summary">
+                <Button
+                  onClick={(e) => onProceed(e)}
+                  style={{
+                    background: '#373737',
+                    color: 'white',
+                    borderRadius: '1px',
+                    border: '0.5px solid white',
+                    width: '14rem',
+                    height: '4rem',
+                    margin: '2rem',
+                  }}
+                >
+                  Proceed To Summary
+                </Button>
+              </Link>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </form>
-    </div>
+    </form>
   );
 };
 
 GuestInfoForm.propTypes = {
   user: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {})(GuestInfoForm);

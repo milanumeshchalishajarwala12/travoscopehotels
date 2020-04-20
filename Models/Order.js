@@ -3,24 +3,28 @@ const mongoose = require('mongoose');
 const OrderSchema = new mongoose.Schema({
   destination: {
     type: String,
-    required: true
+    required: true,
   },
   roomnumber: {
     type: Number,
-    required: true
+    required: true,
   },
   orderdetails: {
     type: Object,
-    required: true
+    required: true,
   },
   total: {
     type: Number,
-    required: true
+    required: true,
   },
   orderdate: {
-    type: Date,
-    default: Date.now()
-  }
+    type: String,
+    default: Date.now(),
+  },
+  isComplete: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 module.exports = Order = mongoose.model('order', OrderSchema);

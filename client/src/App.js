@@ -12,10 +12,10 @@ import Login from './Components/Auth/Login';
 import Signup from './Components/Auth/Signup';
 import ListOfRooms from './Components/Layout/ListOfRooms';
 import Makeareservation from './Components/Layout/Makeareservation';
-import ListofCusines from './Components/Layout/ListOfCuisines';
 import Summary from './Components/Layout/Summary';
 import Order from './Components/Layout/Order';
 import OrderSummary from './Components/Layout/OrderSummary';
+import PrivateRoute from './Components/routing/PrivateRoute';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -50,22 +50,21 @@ function App() {
           </div>
 
           <Route exact path="/" component={Landing} />
-          <Route exact path="/listofrooms" component={ListOfRooms} />
           <Switch>
+            <Route exact path="/listofrooms" component={ListOfRooms} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contactus" component={ContactUs} />
             <Route exact path="/destinations" component={Destinations} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/listofcusines" component={ListofCusines} />
             <Route exact path="/addguestinfo" component={AddGuestInfo} />
             <Route exact path="/summary" component={Summary} />
             <Route exact path="/confirmationpage" component={Confirmation} />
-            <Route exact path="/profile" component={Mybookings} />
-            <Route exact path="/checkin" component={CheckIn} />
+            <PrivateRoute exact path="/profile" component={Mybookings} />
+            <PrivateRoute exact path="/checkin" component={CheckIn} />
             <Route exact path="/amenities" component={Amenities} />
             <Route exact path="/bookslot" component={BookSlot} />
-            <Route exact path="/dining" component={Dining} />
+            <PrivateRoute exact path="/dining" component={Dining} />
             <Route exact path="/order" component={Order} />
             <Route exact path="/ordersummary" component={OrderSummary} />
 

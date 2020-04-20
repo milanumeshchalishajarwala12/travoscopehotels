@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { Link, Redirect } from 'react-router-dom';
+import { getBookings } from '../../actions/booking';
 
-const Amenities = props => {
+const Amenities = ({ getBookings, user: { email } }) => {
   return (
     <div>
       <div
@@ -12,14 +13,14 @@ const Amenities = props => {
           margin: '20px 0px 20px 0px',
           background: '#373737',
           color: 'white',
-          height: '4rem'
+          height: '4rem',
         }}
       >
         <h2
           style={{
             margin: '20px 0px 0px 40px',
             fontFamily: 'Prata',
-            fontSize: '2.5rem'
+            fontSize: '2.5rem',
           }}
         >
           Amenities
@@ -31,7 +32,7 @@ const Amenities = props => {
             textAlign: 'center',
             fontSize: '2rem',
             fontFamily: 'Prata',
-            margin: '20px 0px 40px 0px'
+            margin: '20px 0px 40px 0px',
           }}
         >
           Swimming Pool
@@ -43,7 +44,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1.5rem'
+              fontSize: '1.5rem',
             }}
           >
             All Locations{' '}
@@ -53,7 +54,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1rem'
+              fontSize: '1rem',
             }}
           >
             Hours: 24 Hours, 7 Days a week{' '}
@@ -66,7 +67,7 @@ const Amenities = props => {
             textAlign: 'center',
             fontSize: '2rem',
             fontFamily: 'Prata',
-            margin: '20px 0px 40px 0px'
+            margin: '20px 0px 40px 0px',
           }}
         >
           Fitness Center{' '}
@@ -78,7 +79,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1.5rem'
+              fontSize: '1.5rem',
             }}
           >
             All Locations{' '}
@@ -88,7 +89,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1rem'
+              fontSize: '1rem',
             }}
           >
             Hours: 5:00 AM - 11:00 PM , 7 Days a week{' '}
@@ -101,7 +102,7 @@ const Amenities = props => {
             textAlign: 'center',
             fontSize: '2rem',
             fontFamily: 'Prata',
-            margin: '20px 0px 40px 0px'
+            margin: '20px 0px 40px 0px',
           }}
         >
           Hot Tub{' '}
@@ -113,7 +114,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1.5rem'
+              fontSize: '1.5rem',
             }}
           >
             All Locations{' '}
@@ -123,7 +124,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1rem'
+              fontSize: '1rem',
             }}
           >
             Hours: 9:00 AM to 9:00 PM, 7 Days a Week
@@ -137,7 +138,7 @@ const Amenities = props => {
             textAlign: 'center',
             fontSize: '2rem',
             fontFamily: 'Prata',
-            margin: '20px 0px 40px 0px'
+            margin: '20px 0px 40px 0px',
           }}
         >
           Deep Tissue Massage{' '}
@@ -149,7 +150,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1.5rem'
+              fontSize: '1.5rem',
             }}
           >
             Available at all Locations{' '}
@@ -159,7 +160,7 @@ const Amenities = props => {
               textAlign: 'center',
               fontFamily: 'Prata',
               marginTop: '2rem',
-              fontSize: '1rem'
+              fontSize: '1rem',
             }}
           >
             <div>
@@ -169,7 +170,7 @@ const Amenities = props => {
                   style={{
                     background: '#373737',
                     width: '12rem',
-                    color: 'white'
+                    color: 'white',
                   }}
                 >
                   Book a Slot
@@ -183,6 +184,13 @@ const Amenities = props => {
   );
 };
 
-Amenities.propTypes = {};
+Amenities.propTypes = {
+  user: PropTypes.object.isRequired,
+  getBookings: PropTypes.func.isRequired,
+};
 
-export default connect(null, {})(Amenities);
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, { getBookings })(Amenities);

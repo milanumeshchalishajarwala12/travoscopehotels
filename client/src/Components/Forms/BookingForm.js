@@ -16,23 +16,23 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
     destination: '',
     checkindate: '',
     checkoutdate: '',
-    noofguests: ''
+    noofguests: 0,
   });
 
   const { destination, checkindate, checkoutdate, noofguests } = formData;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    searchRooms(destination, noofguests);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     var checkindate_int = new Date(checkindate);
     var checkoutdate_int = new Date(checkoutdate);
     var today = new Date();
     var days =
       Math.abs(checkoutdate_int - checkindate_int) / 1000 / 60 / 60 / 24;
-    console.log(checkindate_int - today);
     if (checkindate_int - today >= -100000000) {
       if (days < 1) {
         alert('Check-In date and Check-Out date cannot be the same ');
@@ -43,7 +43,12 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
         localStorage.setItem('noofguests', noofguests);
         localStorage.setItem('checkindate', checkindate);
         localStorage.setItem('checkoutdate', checkoutdate);
-        searchRooms(destination);
+        searchRooms(destination, noofguests);
+        console.log(
+          new Date(parseInt(new Date().getTime()) + 84600000)
+            .toUTCString()
+            .substring(0, 16)
+        );
       }
     } else {
       alert('Check-In date cannot be in Past');
@@ -57,7 +62,7 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
           style={{
             color: '#76323F',
             textAlign: 'center',
-            fontFamily: 'Prata'
+            fontFamily: 'Prata',
           }}
         >
           Find Rooms
@@ -67,7 +72,7 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
             <label
               style={{
                 color: '#565656',
-                fontSize: '1.5rem'
+                fontSize: '1.5rem',
               }}
             >
               Location
@@ -82,10 +87,10 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
                   padding: '0.3rem 0rem 0.3rem 1rem',
                   color: '#565656',
                   borderRadius: '5px',
-                  border: '0.5px solid lightgrey'
+                  border: '0.5px solid lightgrey',
                 }}
                 value={destination}
-                onChange={e => handleChange(e)}
+                onChange={(e) => handleChange(e)}
                 name="destination"
               >
                 <MenuItem value="Boston, MA">Boston, MA</MenuItem>
@@ -111,11 +116,11 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
                 backgroundColor: 'white',
                 width: '12rem',
                 borderRadius: '5px',
-                padding: '0.3rem 0rem 0.3rem 1rem'
+                padding: '0.3rem 0rem 0.3rem 1rem',
               }}
               type="date"
               placeholder={'MM/DD/YY'}
-              onChange={e => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               name="checkindate"
               value={checkindate}
             />
@@ -128,7 +133,7 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
               style={{
                 marginLeft: '20px',
                 color: '#565656',
-                fontSize: '1.5rem'
+                fontSize: '1.5rem',
               }}
             >
               Guests
@@ -140,18 +145,18 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
                 padding: '0.3rem 0rem 0.3rem 1rem',
                 color: '#565656',
                 borderRadius: '5px',
-                border: '0.5px solid lightgrey'
+                border: '0.5px solid lightgrey',
               }}
               value={noofguests}
-              onChange={e => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               name="noofguests"
             >
-              <MenuItem value="1">1</MenuItem>
-              <MenuItem value="2">2</MenuItem>
-              <MenuItem value="3">3</MenuItem>
-              <MenuItem value="4">4</MenuItem>
-              <MenuItem value="5">5</MenuItem>
-              <MenuItem value="6">6</MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
             </Select>
           </div>
 
@@ -164,44 +169,45 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
                 backgroundColor: 'white',
                 width: '11rem',
                 borderRadius: '5px',
-                padding: '0.3rem 0rem 0.3rem 1rem'
+                padding: '0.3rem 0rem 0.3rem 1rem',
               }}
               value={checkoutdate}
-              onChange={e => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               type="date"
               name="checkoutdate"
               placeholder="MM/DD/YYYY"
             ></input>
           </div>
           <br />
-          <Button
-            style={{
-              fontFamily: 'Prata',
-              background: 'none',
-              color: ' #76323F',
-              margin: '20px 230px 20px 230px',
-              width: '40%',
-              borderRadius: '5px',
-              border: '0.5px solid black'
-            }}
-            onClick={e => handleSubmit(e)}
-          >
-            Search Rooms
-          </Button>
+          <Link to="#">
+            <Button
+              style={{
+                fontFamily: 'Prata',
+                background: 'none',
+                color: ' #76323F',
+                margin: '20px 230px 20px 230px',
+                width: '40%',
+                borderRadius: '5px',
+                border: '0.5px solid black',
+              }}
+              onClick={(e) => handleSubmit(e)}
+            >
+              Search Rooms
+            </Button>
+          </Link>
         </div>
       </section>
-      {!loading ? <Redirect to="/listofrooms"></Redirect> : ''}
     </Fragment>
   );
 };
 
 BookingForm.propTypes = {
   searchRooms: PropTypes.func,
-  room: PropTypes.object.isRequired
+  room: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  room: state.room
+const mapStateToProps = (state) => ({
+  room: state.room,
 });
 
 export default connect(mapStateToProps, { searchRooms })(BookingForm);

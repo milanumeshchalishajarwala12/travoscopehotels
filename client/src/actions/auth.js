@@ -10,6 +10,8 @@ import {
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import { loadUserDetails } from './user';
+import { getBookings, getaddbookings } from './booking';
+import { setAlert } from './alert';
 
 // Register User
 
@@ -83,7 +85,13 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
     dispatch(loadUser());
     dispatch(loadUserDetails());
+    dispatch(getBookings(email));
+    dispatch(getaddbookings(email));
   } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: LOGIN_FAIL,
     });

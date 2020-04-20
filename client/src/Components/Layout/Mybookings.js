@@ -10,10 +10,6 @@ const Mybookings = ({
   booking: { bookings, addbookings, loading },
   user: { firstname, lastname, status, loyalityPoints, email, phone }
 }) => {
-  useEffect(() => {
-    getBookings();
-  }, [getBookings]);
-
   return (
     <Fragment>
       <div className="profilecontainer">
@@ -63,6 +59,20 @@ const Mybookings = ({
             </h2>
             {bookings.map(booking => (
               <BookingItem key={booking._id} booking={booking} />
+            ))}
+            <h2
+              style={{
+                textAlign: 'center',
+                fontFamily: 'Prata',
+                fontSize: '1rem'
+              }}
+            >
+              {' '}
+              You have {addbookings.length} additional reservations
+            </h2>
+
+            {addbookings.map(addbooking => (
+              <AddBookingItem key={addbooking._id} addbooking={addbooking} />
             ))}
           </div>
         )}

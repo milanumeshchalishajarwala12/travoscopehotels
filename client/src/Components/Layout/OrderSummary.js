@@ -13,7 +13,7 @@ const OrderSummary = ({ user: { firstname } }) => {
           style={{
             textAlign: 'left',
             margin: '1.5rem',
-            fontSize: '2rem'
+            fontSize: '2rem',
           }}
         >
           {firstname}, your order is accepted at cafeteria!
@@ -22,23 +22,23 @@ const OrderSummary = ({ user: { firstname } }) => {
           style={{
             textAlign: 'left',
             margin: '1.0rem',
-            fontSize: '2rem'
+            fontSize: '2rem',
           }}
         >
           {' '}
-          It will be shortly delivered to Room {roomnumber}.
+          It will be shortly delivered to your Room {roomnumber}.
         </p>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = (state) => ({
+  user: state.user,
 });
 
 OrderSummary.propTypes = {
-  user: PropTypes.func.isRequired
+  user: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, {})(OrderSummary);

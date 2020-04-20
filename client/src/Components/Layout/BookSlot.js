@@ -16,32 +16,29 @@ const BookSlot = ({
   bookSlot,
   bookslotforuser,
   booking: { bookings },
-  auth: { isAuthenticated }
+  auth: { isAuthenticated },
 }) => {
-  useEffect(() => {
-    getBookings();
-  }, [getBookings]);
   const [formData, setFormData] = useState({
     email: '',
     email1: '',
     password: '',
     slotdate: '',
-    slottime: ''
+    slottime: '',
   });
 
   const { email, password, email1, slotdate, slottime } = formData;
   var massagetotal = 150;
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     loginUser(email, password);
     getBookings(email);
   };
 
-  const onSearch = e => {
+  const onSearch = (e) => {
     e.preventDefault();
     getBookings(email1);
   };
@@ -54,10 +51,10 @@ const BookSlot = ({
           marginTop: '30px',
           fontFamily: 'Prata',
           fontSize: '2rem',
-          textAlign: 'center'
+          textAlign: 'center',
         }}
       >
-        Book A Slot for Deep Tissue Massage chmilan7@gmail.com
+        Book A Slot for Deep Tissue Massage
       </h2>
       {bookings.length == 0 && !isAuthenticated ? (
         <p style={{ textAlign: 'center', fontFamily: 'Times New Roman' }}>
@@ -67,7 +64,7 @@ const BookSlot = ({
             style={{
               width: '80%',
               margin: '20px 150px 20px 150px',
-              height: '20rem'
+              height: '20rem',
             }}
           >
             <div
@@ -77,48 +74,51 @@ const BookSlot = ({
                 float: 'left',
                 height: '15rem',
                 padding: '2rem',
-                borderRadius: '10px'
+                borderRadius: '10px',
               }}
             >
               <h2>Login</h2>
               <form>
                 <TextField
+                  required
                   style={{
                     width: '14rem',
                     height: 'auto',
-                    margin: '0.5rem 1rem 0.5rem 1rem'
+                    margin: '0.5rem 1rem 0.5rem 1rem',
                   }}
                   id="email"
                   label="Email"
                   name="email"
                   type="email"
                   value={email}
-                  onChange={e => onChange(e)}
+                  onChange={(e) => onChange(e)}
                   required
                 />
                 <br />
                 <TextField
+                  required
                   style={{
                     width: '14rem',
                     height: 'auto',
-                    margin: '0.5rem 1rem 0.5rem 1rem'
+                    margin: '0.5rem 1rem 0.5rem 1rem',
                   }}
                   id="password"
                   name="password"
                   value={password}
                   label="Password"
                   type="password"
-                  onChange={e => onChange(e)}
+                  onChange={(e) => onChange(e)}
                   required
                 />
                 <br />
                 <Button
-                  onClick={e => onSubmit(e)}
+                  type="submit"
+                  onClick={(e) => onSubmit(e)}
                   style={{
                     backgroundColor: 'brown',
                     width: '8rem',
                     height: 'auto',
-                    margin: '2rem 1rem 1rem 1rem'
+                    margin: '2rem 1rem 1rem 1rem',
                   }}
                   variant="contained"
                   color="primary"
@@ -135,33 +135,36 @@ const BookSlot = ({
                 float: 'right',
                 height: '15rem',
                 padding: '2rem',
-                borderRadius: '10px'
+                borderRadius: '10px',
               }}
             >
               <h2>Enter Email Address</h2>
               <form>
                 <TextField
+                  required
                   style={{
                     width: '14rem',
                     height: 'auto',
-                    margin: '0.5rem 1rem 0.5rem 1rem'
+                    margin: '0.5rem 1rem 0.5rem 1rem',
                   }}
                   id="email"
                   name="email1"
                   value={email1}
                   label="Email"
                   type="text"
-                  onChange={e => onChange(e)}
+                  onChange={(e) => onChange(e)}
                   required
                 />
                 <br />
+
                 <Button
-                  onClick={e => onSearch(e)}
+                  onClick={(e) => onSearch(e)}
+                  type="submit"
                   style={{
                     backgroundColor: 'brown',
                     width: '15rem',
                     height: 'auto',
-                    margin: '2rem 1rem 1rem 1rem'
+                    margin: '2rem 1rem 1rem 1rem',
                   }}
                   variant="contained"
                   color="primary"
@@ -181,7 +184,7 @@ const BookSlot = ({
           </p>
 
           {bookings.map((booking, i) => {
-            if (bookings.length > 0 && i === 0) {
+            if (bookings.length > 0 && i == 0) {
               var stay =
                 new Date(booking.checkoutdate) - new Date(booking.checkindate);
               var balance = new Date(booking.checkoutdate) - new Date(slotdate);
@@ -195,7 +198,7 @@ const BookSlot = ({
                       width: '65%',
                       height: '10rem',
                       padding: '1rem',
-                      marginLeft: '15rem'
+                      marginLeft: '15rem',
                     }}
                   >
                     <p style={{ marginLeft: '15rem' }}>
@@ -205,10 +208,11 @@ const BookSlot = ({
                     <form
                       style={{
                         margin: '0rem 2rem 0rem 2rem',
-                        padding: '1rem'
+                        padding: '1rem',
                       }}
                     >
                       <input
+                        required
                         style={{
                           backgroundColor: 'white',
                           width: '13rem',
@@ -216,12 +220,12 @@ const BookSlot = ({
                           color: '#565656',
                           borderRadius: '5px',
                           border: '0.5px solid lightgrey',
-                          margin: '1.5rem'
+                          margin: '1.5rem',
                         }}
                         type="date"
                         label="Select Date"
                         name="slotdate"
-                        onChange={e => onChange(e)}
+                        onChange={(e) => onChange(e)}
                         value={slotdate}
                       />
                       <Select
@@ -232,11 +236,12 @@ const BookSlot = ({
                           color: '#565656',
                           borderRadius: '5px',
                           border: '0.5px solid lightgrey',
-                          margin: '1.5rem'
+                          margin: '1.5rem',
                         }}
                         value={slottime}
-                        onChange={e => onChange(e)}
+                        onChange={(e) => onChange(e)}
                         name="slottime"
+                        required
                       >
                         <MenuItem value="9:00 AM - 9:45 AM">
                           9:00 AM - 9:45 AM
@@ -272,37 +277,42 @@ const BookSlot = ({
                           7:00 AM - 7:45 AM
                         </MenuItem>
                       </Select>
-                      <Button
-                        onClick={e => {
-                          validity < 0 || validity > stay
-                            ? alert(
-                                'Please select a date under your reservation dates'
-                              )
-                            : bookSlot(
-                                email || email1,
-                                slottime,
-                                slotdate,
-                                booking.destination,
-                                booking.checkindate,
-                                booking.checkoutdate,
-                                booking.roomnumber,
-                                massagetotal,
-                                booking.total,
-                                booking.fullname
-                              );
-                        }}
-                        style={{
-                          backgroundColor: 'brown',
-                          width: '13rem',
-                          height: '2.5rem',
-                          margin: '1rem 1rem 1rem 1rem',
-                          display: 'inline-block'
-                        }}
-                        variant="contained"
-                        color="primary"
-                      >
-                        Book Now
-                      </Button>
+                      <Link to="/amenities">
+                        <Button
+                          onClick={(e) => {
+                            validity < 0 || validity > stay
+                              ? alert(
+                                  'Please select a date under your reservation dates'
+                                )
+                              : slotdate && slottime
+                              ? bookSlot(
+                                  email || email1,
+                                  slottime,
+                                  slotdate,
+                                  booking.destination,
+                                  booking.checkindate,
+                                  booking.checkoutdate,
+                                  booking.roomnumber,
+                                  massagetotal,
+                                  booking.total,
+                                  booking.fullname
+                                )
+                              : alert('Fields cannot be empty');
+                          }}
+                          style={{
+                            backgroundColor: 'brown',
+                            width: '13rem',
+                            height: '2.5rem',
+                            margin: '1rem 1rem 1rem 1rem',
+                            display: 'inline-block',
+                          }}
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                        >
+                          Book Now
+                        </Button>
+                      </Link>
                     </form>
                   </div>
                 </div>
@@ -322,14 +332,17 @@ BookSlot.propTypes = {
   auth: PropTypes.object.isRequired,
   getBookings: PropTypes.func.isRequired,
   bookSlot: PropTypes.func.isRequired,
-  bookslotforuser: PropTypes.func.isRequired
+  bookslotforuser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({ booking: state.booking, auth: state.auth });
+const mapStateToProps = (state) => ({
+  booking: state.booking,
+  auth: state.auth,
+});
 
 export default connect(mapStateToProps, {
   loginUser,
   getBookings,
   bookSlot,
-  bookslotforuser
+  bookslotforuser,
 })(BookSlot);

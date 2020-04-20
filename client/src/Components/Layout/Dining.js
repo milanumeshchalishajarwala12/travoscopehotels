@@ -8,22 +8,24 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { checkUserOut } from '../../actions/booking';
 
 const Dining = ({
   user: { isCheckedIn, isCheckedOut },
   location: { Item1, Item2, Item3, Item4, Item5, Item6 },
-  getMenu
+  getMenu,
 }) => {
+  console.log(isCheckedIn, isCheckedOut);
   const [formData, setFormData] = useState({
-    cuisine: ''
+    cuisine: '',
   });
 
   const { cuisine } = formData;
   const [state, setState] = useState({
-    checkedA: false
+    checkedA: false,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setFormData({ ...state, [event.target.name]: event.target.value });
     setState({ ...state, [event.target.name]: event.target.checked });
   };
@@ -34,7 +36,7 @@ const Dining = ({
           fontFamily: 'prata',
           fontSize: '2rem',
           textAlign: 'center',
-          margin: '4.5rem 3.5rem 2rem 3.5rem'
+          margin: '4.5rem 3.5rem 2rem 3.5rem',
         }}
       >
         Welcome to our World Class Cafeteria
@@ -45,12 +47,12 @@ const Dining = ({
           fontFamily: 'prata',
           fontSize: '1rem',
           textAlign: 'center',
-          margin: '4.5rem 3.5rem 2rem 3.5rem'
+          margin: '4.5rem 3.5rem 2rem 3.5rem',
         }}
       >
         You can view tonight's dinner menu only if you are checked in the hotel
       </p>
-      {isCheckedIn && !isCheckedOut ? (
+      {isCheckedIn === true && isCheckedOut === false ? (
         <div>
           <div style={{ height: '15rem' }} className="summarycontainer">
             <h2
@@ -58,7 +60,7 @@ const Dining = ({
                 fontFamily: 'prata',
                 fontSize: '1rem',
                 textAlign: 'left',
-                margin: '1rem'
+                margin: '1rem',
               }}
             >
               Dinner Menu Tonight (All Locations)
@@ -76,7 +78,7 @@ const Dining = ({
               fontFamily: 'prata',
               fontSize: '1rem',
               textAlign: 'left',
-              margin: '3rem 3rem 1rem 3rem'
+              margin: '3rem 3rem 1rem 3rem',
             }}
           >
             <Link to="/order">
@@ -94,12 +96,12 @@ const Dining = ({
 Dining.propTypes = {
   user: PropTypes.object.isRequired,
   getMenu: PropTypes.func.isRequired,
-  location: PropTypes.func.isRequired
+  location: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
-  location: state.location
+  location: state.location,
 });
 
 export default connect(mapStateToProps, { getMenu })(Dining);

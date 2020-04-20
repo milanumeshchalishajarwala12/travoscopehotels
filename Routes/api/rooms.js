@@ -22,9 +22,10 @@ router.get('/', async (req, res) => {
 router.post('/search', async (req, res) => {
   try {
     const { destination, checkindate, checkoutdate, noofguests } = req.body;
-    const rooms = await Room.find({ destination: destination }).sort(
-      'priceperday'
-    );
+    const rooms = await Room.find({
+      destination: destination,
+      maxCap: { $gte: noofguests },
+    }).sort('priceperday');
     if (rooms.length > 0) {
       res.json(rooms);
     } else {

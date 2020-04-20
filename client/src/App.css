@@ -115,11 +115,19 @@ li:visited {
 /* Bottom Bar*/
 
 .bottombar {
-  bottom: 0px;
+  height: 5rem;
+  width: 100%;
+  margin: 5rem 0px 0px 0px;
+  bottom: 0;
   font-size: 0.7rem;
+  position: static;
   text-align: center;
 }
 
+.bottombar li {
+  display: inline-block;
+  margin: 0px 40px 0px 40px;
+}
 /*Landing Page*/
 
 .landingsection1text {
@@ -185,13 +193,13 @@ select {
   padding: 2rem;
   text-align: center;
   font-size: 1.3rem;
-  margin: 30px 310px 30px 350px;
+  margin: 30px 200px 30px 325px;
   border-radius: 2px;
   font-family: 'Caveat';
 }
 
 .landingsection2img {
-  background: url('./img/section2.jpg') no-repeat center/cover;
+  background: url('./img/section2.jpeg') no-repeat center/cover;
   height: 45rem;
   width: 100%;
 }
@@ -201,7 +209,7 @@ select {
   height: auto;
   width: 30%;
   float: left;
-  margin: 10rem 0rem 30rem 5rem;
+  margin: 10rem 0rem 0rem 5rem;
   background: rgba(0, 0, 0, 0.7);
   font-size: 3rem;
   color: white;
@@ -609,6 +617,32 @@ tr {
   margin: 1rem;
   text-align: center;
 }
+
+.alert {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
+  background: red;
+  color: white;
+}
+
+.emailpicture {
+  background: url('./img/presidentialroom.jpg') no-repeat center/cover;
+  height: 20rem;
+  width: 80%;
+}
+.email p {
+  font-family: 'Times New Roman';
+  font-size: 2rem;
+}
 @media (max-width: 700px) {
   .container {
     margin-top: 8rem;
@@ -649,13 +683,5 @@ tr {
 
   .navbar .welcome {
     display: none;
-  }
-
-  .post {
-    grid-template-columns: 1fr;
-  }
-  .post a,
-  .post button {
-    padding: 0.3rem 0.4rem;
   }
 }

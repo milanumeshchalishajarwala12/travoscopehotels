@@ -13,29 +13,40 @@ const TopNavBar = ({
   getaddbookings,
   getMenu,
   auth: { isAuthenticated },
-  user: { firstname, lastname, email, isCheckedIn }
+  user: { firstname, lastname, email, isCheckedIn },
 }) => {
   var location = 'Seattle, WA';
-  const myProfile = e => {
+  const myProfile = (e) => {
     getBookings(email);
-    //getaddbookings(email);
+    getaddbookings(email);
   };
   const authLinks = (
     <div>
       <ul className="topnavbar">
         <div>
-          <li onClick={e => logout()}>Logout</li>
-          <li>
-            <Link to="/makeareservation">Make a Reservation</Link>
-          </li>
-
-          <Link to="/checkin" onClick={e => getBookings(email)}>
+          <li onClick={(e) => logout()}>Logout</li>
+          <li>Contact Us</li>{' '}
+          <Link to="/makeareservation">
+            <li>Begin a Reservation </li>
+          </Link>
+          <Link
+            to="/checkin"
+            onClick={(e) => {
+              getBookings(email);
+            }}
+          >
             <li>Check-In/Check-Out</li>
           </Link>
           <Link to="/amenities">
-            <li>Amenities</li>
+            <li
+              onClick={(e) => {
+                getBookings(email);
+              }}
+            >
+              Amenities
+            </li>
           </Link>
-          <Link to="/dining" onClick={e => getMenu(location)}>
+          <Link to="/dining" onClick={(e) => getMenu(location)}>
             <li>Dining</li>
           </Link>
         </div>
@@ -46,12 +57,12 @@ const TopNavBar = ({
             </Link>
           </li>
         </div>
-        <Link to="/profile" onClick={e => myProfile(e)}>
+        <Link to="/profile" onClick={(e) => myProfile(e)}>
           <Button
             style={{
               color: 'black',
               fontFamily: 'Times New Roman',
-              height: '2rem'
+              height: '2rem',
             }}
           >
             {firstname} {lastname}
@@ -64,12 +75,19 @@ const TopNavBar = ({
   const guestLinks = (
     <ul className="topnavbar">
       <div>
-        <li>About Us</li>
+        <li>About Travoscope Hotels</li>
+        <li>Contact Us</li>
         <li>
-          <Link to="/makeareservation">Make a Reservation</Link>
+          <Link to="/makeareservation">Begin a Reservation</Link>
         </li>
         <Link to="/amenities">
-          <li>Amenities</li>
+          <li
+            onClick={(e) => {
+              getBookings(email);
+            }}
+          >
+            Amenities
+          </li>
         </Link>
       </div>
       <div className="navlogo">
@@ -87,7 +105,7 @@ const TopNavBar = ({
           color: 'black',
           padding: '10px',
           borderRadius: '5%',
-          border: '1px solid black'
+          border: '1px solid black',
         }}
       >
         <Link to="/signup">Sign Up</Link>
@@ -104,17 +122,17 @@ TopNavBar.propTypes = {
   logout: PropTypes.func.isRequired,
   getBookings: PropTypes.func.isRequired,
   getaddbookings: PropTypes.func.isRequired,
-  getMenu: PropTypes.func.isRequired
+  getMenu: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  user: state.user
+  user: state.user,
 });
 
 export default connect(mapStateToProps, {
   logout,
   getBookings,
   getaddbookings,
-  getMenu
+  getMenu,
 })(TopNavBar);

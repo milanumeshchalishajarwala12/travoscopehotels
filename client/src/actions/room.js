@@ -21,14 +21,14 @@ export const getRooms = () => async (dispatch) => {
   }
 };
 
-export const searchRooms = (destination) => async (dispatch) => {
+export const searchRooms = (destination, noofguests) => async (dispatch) => {
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    const body = JSON.stringify({ destination });
+    const body = JSON.stringify({ destination, noofguests });
     const res = await axios.post('/api/rooms/search', body, config);
     dispatch({
       type: SEARCH_ROOMS,
