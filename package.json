@@ -2,7 +2,7 @@
   "name": "travoscope",
   "version": "1.0.0",
   "description": "Travel Blog",
-  "main": "server.js",
+  "main": "Server.js",
   "secure": false,
   "scripts": {
     "start": "node server",

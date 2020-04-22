@@ -15,7 +15,6 @@ const Summary = ({
   auth: { isAuthenticated },
   user: { email, isCheckedIn },
 }) => {
-  var isCheckedIn = false;
   var isCheckedOut = false;
   var destination = localStorage.getItem('destination');
   var roomtype = localStorage.getItem('roomtype');
