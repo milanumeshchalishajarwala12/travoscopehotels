@@ -5,34 +5,30 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const auth = require('../../Middleware/auth');
+
 router.post(
   '/',
 
   async (req, res) => {
     const { loginid, password, destination } = req.body;
+    var department = 'Cafeteria';
     try {
       //See if the staff exists
 
-      let staff = await Staff.findOne({ loginid: loginid });
+      let staff = await Staff.findOne({
+        loginid: loginid,
+        department: department,
+        destination: destination,
+        password: password,
+      });
       if (!staff) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
-      if (staff.destination != destination) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
-      }
       // Match loginid with password
 
-      const isMatch = await bcrypt.compare(password, staff.password);
-      if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
-      }
       const payload = {
         staff: {
           id: staff.id,
@@ -54,5 +50,14 @@ router.post(
     }
   }
 );
+
+router.get('/', auth, async (req, res) => {
+  try {
+    const staff = await Staff.findById(req.staff.id).select('-password');
+    return res.json({ Staff: staff });
+  } catch (err) {
+    return res.status(500).send(err.message);
+  }
+});
 
 module.exports = router;

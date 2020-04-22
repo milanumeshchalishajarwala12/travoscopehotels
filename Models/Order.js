@@ -21,6 +21,10 @@ const OrderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  isComplete: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 module.exports = Order = mongoose.model('order', OrderSchema);
