@@ -31,6 +31,7 @@ const Order = ({
       [name]: event.target.value,
     });
   };
+  var cuisine123;
   var total = 0;
   var orderdetails = [];
   var t1, t2, t3, t4, t5;
