@@ -21,15 +21,24 @@ export const getRooms = () => async (dispatch) => {
   }
 };
 
-export const searchRooms = (destination, noofguests) => async (dispatch) => {
+export const searchRooms = (destination, stayArray, noofguests) => async (
+  dispatch
+) => {
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    const body = JSON.stringify({ destination, noofguests });
+
+    const body = JSON.stringify({
+      destination,
+      stayArray,
+      noofguests,
+    });
+    console.log(body);
     const res = await axios.post('/api/rooms/search', body, config);
+
     dispatch({
       type: SEARCH_ROOMS,
       payload: res.data,
@@ -45,4 +54,20 @@ export const clearRoomState = () => async (dispatch) => {
   dispatch({
     type: CLEAR_ROOMS,
   });
+};
+
+export const handleAvail = (id, bookingArray) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log(bookingArray);
+    const body = JSON.stringify({ id, bookingArray });
+    const res = await axios.post('/api/rooms/avail', body, config);
+    console.log(res.data);
+  } catch (error) {
+    console.log(error.message);
+  }
 };

@@ -18,6 +18,7 @@ const Room = ({
     airportPickupDrop,
     laundry,
     roomnumber,
+    _id,
   },
   auth: { isAuthenticated },
 }) => {
@@ -26,6 +27,7 @@ const Room = ({
     localStorage.setItem('bedtype', bedtype);
     localStorage.setItem('pricepernight', pricepernight);
     localStorage.setItem('roomnumber', roomnumber);
+    localStorage.setItem('roomID', _id);
 
     var totalprice = parseFloat(pricepernight * localStorage.getItem('days'));
     localStorage.setItem('totalprice', totalprice);

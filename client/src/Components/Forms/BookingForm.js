@@ -24,7 +24,6 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    searchRooms(destination, noofguests);
   };
 
   const handleSubmit = (e) => {
@@ -43,17 +42,34 @@ const BookingForm = ({ searchRooms, room: { rooms, loading } }) => {
         localStorage.setItem('noofguests', noofguests);
         localStorage.setItem('checkindate', checkindate);
         localStorage.setItem('checkoutdate', checkoutdate);
-        searchRooms(destination, noofguests);
-        console.log(
-          new Date(parseInt(new Date().getTime()) + 84600000)
-            .toUTCString()
-            .substring(0, 16)
-        );
+        searchRooms(destination, stayArray, noofguests);
+        console.log(stayArray);
+        var bookingArray = [];
+        var demo =
+          new Date(localStorage.getItem('checkindate')).getTime() - 84600000;
+
+        for (var i = 0; i < days; ++i) {
+          demo = demo + 84600000;
+          bookingArray.push(demo);
+        }
       }
     } else {
       alert('Check-In date cannot be in Past');
     }
   };
+
+  if (!loading && rooms.length > 0) {
+    return <Redirect to="/listofrooms"></Redirect>;
+  }
+  var stayArray = [];
+  var demo1 = new Date(checkindate) - 84600000;
+  var stayDays =
+    (new Date(checkoutdate) - new Date(checkindate)) / 1000 / 60 / 60 / 24;
+
+  for (var i = 0; i < stayDays + 1; ++i) {
+    demo1 = demo1 + 84600000;
+    stayArray.push(new Date(demo1).toISOString().substring(0, 10));
+  }
 
   return (
     <Fragment>

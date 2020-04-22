@@ -8,38 +8,12 @@ const User = require('../../Models/User');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 
-//const twilio = require('twilio');
-//const accountSid = 'ACe490e036e98d9904268454eecfc9c8be';
-//const authToken = '73491b0715592a05e90986dcee4634d0';
-//const client = new twilio(accountSid, authToken);
-
 router.use(cors());
-/*
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find();
-    return res.status(201).send(users);
-  } catch (err) {
-    return res.status(404).send(err.message);
-  }
-});
-*/
 
 router.post(
   '/',
 
-  [
-    check('firstname', 'First name is required').not().isEmpty(),
-    check('email', 'Valid email is required').isEmail(),
-    check(
-      'password',
-      'Pleae enter a password with 6 or more character'
-    ).isLength({ min: 8 }),
-    check('phone', 'Enter valid phone number')
-      .not()
-      .isEmpty()
-      .isLength({ max: 10, min: 10 }),
-  ],
+  [],
   async (req, res) => {
     try {
       const errors = validationResult(req);
@@ -58,8 +32,7 @@ router.post(
       } = req.body;
 
       let userEmail = await User.findOne({ email });
-      let userPhone = await User.findOne({ phone });
-      if (userEmail || userPhone) {
+      if (userEmail) {
         return res.status(400).json({ msg: 'Invalid Credential' });
       }
 
@@ -95,12 +68,30 @@ router.post(
       // Send Email
 
       const output = `
-       Hello ${firstname},
-       <br/>
-       Welcome onboard, we are pleased to welcome you to the family. 
-       Welcome to the ${status} club.
-       Just to start, we are rewarding you ${loyalityPoints} loyality points, 
-        Enjoy!
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.3rem' }}>
+      Hello ${firstname},
+    </p>
+
+    <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+      Welcome onboard.
+    </p>
+
+    <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+      We are pleased to welcome you to the family.
+    </p>
+
+    <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+      You are now a Member of the Silver Club at Travoscope Hotels.
+    </p>
+
+    <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+      As a compliment, we are rewarding you ${loyalityPoints} loyality points.
+    </p>
+    <br />
+
+    <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+      We Hope You Have a gret Journey ahead with Travoscope Hotels!
+    </p>
         `;
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
@@ -137,5 +128,49 @@ router.post(
     }
   }
 );
+
+router.post('/askqn', async (req, res) => {
+  try {
+    const { fullname, email, message } = req.body;
+    const output = `
+       <h2 style={{display:"inline-block"}}>Email: </h2><p style={{display:"inline-block"}}>${email}</p>
+       <h2 style={{display:"inline-block"}}>Name: </h2><p style={{display:"inline-block"}}>${fullname}</p>
+       <h2 style={{display:"inline-block"}}>Message: </h2><p style={{display:"inline-block"}}>${message}</p>
+
+        `;
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'milanchal12@gmail.com', // generated ethereal user
+        pass: 'Starbucks$6', // generated ethereal password
+      },
+    });
+
+    // send mail with defined transport object
+    let info = {
+      from: '"Travoscope Hotels®" <milanchal12@gmail.com>', // sender address
+      to: 'mchal4@unh.newhaven.edu', // list of receivers
+      subject: `Question from ${fullname}`, // Subject line
+      html: output, // html body
+    };
+
+    transporter.sendMail(info, (error, info) => {
+      if (error) {
+        console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    });
+
+    res.send({ msg: 'Email has been sent' });
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).send(err.message);
+  }
+});
 
 module.exports = router;

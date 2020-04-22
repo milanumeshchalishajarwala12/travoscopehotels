@@ -30,6 +30,21 @@ export const loadUserDetails = () => async (dispatch) => {
   }
 };
 
+export const askQn = (fullname, email, message) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log('ASk');
+    const body = JSON.stringify({ fullname, email, message });
+    await axios.post('/api/users/askqn', body, config);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 export const viewCusines = () => async (dispatch) => {
   console.log('Function Called');
   try {

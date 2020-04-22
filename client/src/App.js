@@ -29,6 +29,7 @@ import { getBookings } from './actions/booking';
 import Amenities from './Components/Layout/Amenities';
 import BookSlot from './Components/Layout/BookSlot';
 import Dining from './Components/Layout/Dining';
+import Email from './Components/Layout/Email';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -64,9 +65,11 @@ function App() {
             <PrivateRoute exact path="/checkin" component={CheckIn} />
             <Route exact path="/amenities" component={Amenities} />
             <Route exact path="/bookslot" component={BookSlot} />
+            <Route exact path="/email" component={Email} />
+
             <PrivateRoute exact path="/dining" component={Dining} />
-            <Route exact path="/order" component={Order} />
-            <Route exact path="/ordersummary" component={OrderSummary} />
+            <PrivateRoute exact path="/order" component={Order} />
+            <PrivateRoute exact path="/ordersummary" component={OrderSummary} />
 
             <Route
               exact

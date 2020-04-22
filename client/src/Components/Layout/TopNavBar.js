@@ -25,7 +25,9 @@ const TopNavBar = ({
       <ul className="topnavbar">
         <div>
           <li onClick={(e) => logout()}>Logout</li>
-          <li>Contact Us</li>{' '}
+          <Link to="/contactus">
+            <li>Contact Us</li>
+          </Link>
           <Link to="/makeareservation">
             <li>Begin a Reservation </li>
           </Link>
@@ -75,8 +77,9 @@ const TopNavBar = ({
   const guestLinks = (
     <ul className="topnavbar">
       <div>
-        <li>About Travoscope Hotels</li>
-        <li>Contact Us</li>
+        <Link to="/contactus">
+          <li>Contact Us</li>
+        </Link>
         <li>
           <Link to="/makeareservation">Begin a Reservation</Link>
         </li>

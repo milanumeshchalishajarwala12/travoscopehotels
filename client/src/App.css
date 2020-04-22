@@ -378,6 +378,14 @@ select {
   top: 20%;
 }
 
+.vl2 {
+  border-left: 1px solid black;
+  height: 25rem;
+  position: absolute;
+  left: 30%;
+  top: 35%;
+}
+
 .logintextsection {
   background: url('./img/logintextsection.jpg') no-repeat center/cover;
   height: 20rem;
@@ -643,6 +651,35 @@ tr {
   font-family: 'Times New Roman';
   font-size: 2rem;
 }
+
+.contacttitle {
+  text-align: left;
+  width: 40%;
+  height: 4rem;
+  margin: 50px;
+}
+
+.contacttitle h2 {
+  font-size: 2rem;
+  font-family: Prata;
+}
+
+.contactmain {
+  width: 80%;
+  margin: 100px;
+}
+
+.address {
+  width: 30%;
+  height: 10rem;
+  float: left;
+}
+
+.contactform {
+  width: 60%;
+  float: right;
+}
+
 @media (max-width: 700px) {
   .container {
     margin-top: 8rem;

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/auth';
 import { Redirect } from 'react-router-dom';
 
-export const Signup = ({ registerUser }) => {
+export const Signup = ({ auth: { isAuthenticated }, registerUser }) => {
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -30,7 +30,7 @@ export const Signup = ({ registerUser }) => {
       alert('Passwords do not match');
     } else {
       registerUser({ firstname, lastname, email, phone, password });
-      return <Redirect to="/" />;
+      window.location.reload(true);
     }
   };
 
@@ -125,6 +125,7 @@ export const Signup = ({ registerUser }) => {
               required
             />
             <br />
+
             <Button
               style={{
                 width: '40%',
@@ -155,4 +156,8 @@ Signup.propTypes = {
   registerUser: PropTypes.func.isRequired,
 };
 
-export default connect(null, { registerUser })(Signup);
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { registerUser })(Signup);

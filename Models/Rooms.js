@@ -9,6 +9,10 @@ const RoomSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  bedtype: {
+    type: String,
+    required: true,
+  },
   isAvailable: {
     type: Boolean,
     required: true,
@@ -18,32 +22,36 @@ const RoomSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  amenities: [
-    {
-      wifi: {
-        type: Boolean,
-        isAvailable: true,
-      },
-    },
-    {
-      jacuzi: {
-        type: Boolean,
-        isAvailable: true,
-      },
-    },
-    {
-      laundry: {
-        type: Boolean,
-        isAvailable: true,
-      },
-    },
-    {
-      airportPickupDrop: {
-        type: Boolean,
-        isAvailable: true,
-      },
-    },
-  ],
+
+  wifi: {
+    type: Boolean,
+  },
+  jacuzi: {
+    type: Boolean,
+  },
+
+  laundry: {
+    type: Boolean,
+  },
+
+  airportPickupDrop: {
+    type: Boolean,
+  },
+  maxCap: {
+    type: Number,
+    max: 6,
+    min: 1,
+    required: true,
+  },
+  roomnumber: {
+    type: Number,
+    required: true,
+  },
+  loungeAccess: {
+    type: Boolean,
+    required: true,
+  },
+  bookingArray: [],
 });
 
 module.exports = Room = mongoose.model('room', RoomSchema);

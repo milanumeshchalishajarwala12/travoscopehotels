@@ -3,30 +3,31 @@ import PropTypes from 'prop-types';
 
 const Email = (props) => {
   return (
-    <div className="email">
-      <p>Hi Milan,</p>
-      <br />
-      <h2 style={{ textAlign: 'center' }}>
-        Your booking at Los Angeles has been confirmed.
-      </h2>
-      <br />
-      <div className="emailpicture"></div>
-      <div style={{ height: '5rem', margin: '20px' }}>
-        <p>Following are your booking details:</p>
-        <p>Room Type: Super Deluxe, King</p>
-        <p>Check-In: 2020/20/02</p>
-        <p>Check-Out: 2020/20/09</p>
-        <p>Number of Guests: 4</p>
-      </div>
-      <br />
-      <div style={{ height: '5rem', margin: '20px' }}>
-        <h3>Summary of Charges:</h3>
+    <div>
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.3rem' }}>
+        Hello $,
+      </p>
 
-        <p>Subtotal: $11</p>
-        <p>Tax: $12</p>
-        <p>Total : $23</p>
-      </div>
-      <p>Have a great stay!</p>
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+        Welcome onboard.
+      </p>
+
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+        We are pleased to welcome you to the family.
+      </p>
+
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+        You are now a Member of the Silver Club at Travoscope Hotels.
+      </p>
+
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+        As a compliment, we are rewarding you $ loyality points.
+      </p>
+      <br />
+
+      <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
+        We Hope You Have a gret Journey ahead with Travoscope Hotels!
+      </p>
     </div>
   );
 };

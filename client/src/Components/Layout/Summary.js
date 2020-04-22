@@ -6,10 +6,12 @@ import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { confirmBooking, sendBookingEmail } from '../../actions/booking';
 import { addBookingToUser } from '../../actions/booking';
+import { handleAvail } from '../../actions/room';
 
 const Summary = ({
   confirmBooking,
   addBookingToUser,
+  handleAvail,
   auth: { isAuthenticated },
   user: { email, isCheckedIn },
 }) => {
@@ -35,7 +37,21 @@ const Summary = ({
   var city = localStorage.getItem('city');
   var state = localStorage.getItem('state');
   var status = localStorage.getItem('status');
+  var id = localStorage.getItem('roomID');
 
+  var bookingArray = [];
+  var demoDays =
+    (new Date(checkoutdate) - new Date(checkindate)) / 1000 / 60 / 60 / 24;
+
+  var demo = new Date(localStorage.getItem('checkindate')) - 84600000;
+  if (demoDays == 1) {
+    bookingArray.push(new Date(checkindate).toISOString().substring(0, 10));
+  } else {
+    for (var i = 0; i < demoDays + 1; ++i) {
+      demo = demo + 84600000;
+      bookingArray.push(new Date(demo).toISOString().substring(0, 10));
+    }
+  }
   var zip = localStorage.getItem('zip');
   var noofguests = localStorage.getItem('noofguests');
   var address;
@@ -74,6 +90,8 @@ const Summary = ({
         tax,
         total
       );
+
+      handleAvail(id, bookingArray);
     }
 
     if (isAuthenticated == true) {
@@ -83,7 +101,6 @@ const Summary = ({
         destination,
         roomnumber,
         roomtype,
-
         pricepernight,
         fullname,
         noofguests,
@@ -100,6 +117,7 @@ const Summary = ({
         isCheckedIn,
         isCheckedOut
       );
+      handleAvail(id, bookingArray);
 
       addBookingToUser(
         bedtype,
@@ -354,6 +372,7 @@ const Summary = ({
 Summary.propTypes = {
   confirmBooking: PropTypes.func.isRequired,
   addBookingToUser: PropTypes.func.isRequired,
+  handleAvail: PropTypes.func.isRequired,
   auth: PropTypes.func,
   user: PropTypes.func,
 };
@@ -363,6 +382,8 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, { confirmBooking, addBookingToUser })(
-  Summary
-);
+export default connect(mapStateToProps, {
+  handleAvail,
+  confirmBooking,
+  addBookingToUser,
+})(Summary);

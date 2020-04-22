@@ -19,8 +19,18 @@ const EditBookingForm = ({ searchRooms, room: { rooms } }) => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    searchRooms(destination, noofguests);
+    console.log(formData);
   };
+
+  var stayArray = [];
+  var demo1 = new Date(checkindate) - 84600000;
+  var stayDays =
+    (new Date(checkoutdate) - new Date(checkindate)) / 1000 / 60 / 60 / 24;
+
+  for (var i = 0; i < stayDays + 1; ++i) {
+    demo1 = demo1 + 84600000;
+    stayArray.push(new Date(demo1).toISOString().substring(0, 10));
+  }
 
   const handleSubmit = () => {
     var checkindate_int = new Date(checkindate);
@@ -39,7 +49,8 @@ const EditBookingForm = ({ searchRooms, room: { rooms } }) => {
         localStorage.setItem('noofguests', noofguests);
         localStorage.setItem('checkindate', checkindate);
         localStorage.setItem('checkoutdate', checkoutdate);
-        searchRooms(destination, noofguests);
+        searchRooms(destination, stayArray, noofguests);
+        console.log(stayArray);
       }
     } else {
       alert('Check-In date cannot be in Past');
