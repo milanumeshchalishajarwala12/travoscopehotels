@@ -17,16 +17,17 @@ const BookSlot = ({
   bookslotforuser,
   booking: { bookings },
   auth: { isAuthenticated },
+  user: { email },
 }) => {
   const [formData, setFormData] = useState({
-    email: '',
     email1: '',
+    email2: '',
     password: '',
     slotdate: '',
     slottime: '',
   });
 
-  const { email, password, email1, slotdate, slottime } = formData;
+  const { email1, password, email2, slotdate, slottime } = formData;
   var massagetotal = 150;
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,13 +35,13 @@ const BookSlot = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password);
-    getBookings(email);
+    loginUser(email1, password);
+    getBookings(email1);
   };
 
   const onSearch = (e) => {
     e.preventDefault();
-    getBookings(email1);
+    getBookings(email2);
   };
 
   return (
@@ -88,9 +89,9 @@ const BookSlot = ({
                   }}
                   id="email"
                   label="Email"
-                  name="email"
+                  name="email1"
                   type="email"
-                  value={email}
+                  value={email1}
                   onChange={(e) => onChange(e)}
                   required
                 />
@@ -147,9 +148,9 @@ const BookSlot = ({
                     height: 'auto',
                     margin: '0.5rem 1rem 0.5rem 1rem',
                   }}
-                  id="email"
-                  name="email1"
-                  value={email1}
+                  id="email2"
+                  name="email2"
+                  value={email2}
                   label="Email"
                   type="text"
                   onChange={(e) => onChange(e)}
@@ -280,24 +281,34 @@ const BookSlot = ({
                       <Link to="/amenities">
                         <Button
                           onClick={(e) => {
-                            validity < 0 || validity > stay
-                              ? alert(
-                                  'Please select a date under your reservation dates'
-                                )
-                              : slotdate && slottime
-                              ? bookSlot(
-                                  email || email1,
-                                  slottime,
-                                  slotdate,
-                                  booking.destination,
-                                  booking.checkindate,
-                                  booking.checkoutdate,
-                                  booking.roomnumber,
-                                  massagetotal,
-                                  booking.total,
-                                  booking.fullname
-                                )
-                              : alert('Fields cannot be empty');
+                            if (validity < 0 || validity > stay) {
+                              alert(
+                                'Please select a date under your reservation dates'
+                              );
+                            } else {
+                              alert('Slot Succesfully Booked');
+                              var useremail;
+                              if (email) {
+                                useremail = email;
+                              } else if (email1) {
+                                useremail = email1;
+                              } else if (email2) {
+                                useremail = email2;
+                              }
+                              console.log(formData);
+                              bookSlot(
+                                useremail,
+                                slottime,
+                                slotdate,
+                                booking.destination,
+                                booking.checkindate,
+                                booking.checkoutdate,
+                                booking.roomnumber,
+                                massagetotal,
+                                booking.total,
+                                booking.fullname
+                              );
+                            }
                           }}
                           style={{
                             backgroundColor: 'brown',
@@ -333,11 +344,13 @@ BookSlot.propTypes = {
   getBookings: PropTypes.func.isRequired,
   bookSlot: PropTypes.func.isRequired,
   bookslotforuser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   booking: state.booking,
   auth: state.auth,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, {

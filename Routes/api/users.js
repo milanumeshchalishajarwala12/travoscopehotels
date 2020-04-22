@@ -73,11 +73,11 @@ router.post(
     </p>
 
     <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
-      Welcome onboard.
+      Welcome Onboard.
     </p>
 
     <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
-      We are pleased to welcome you to the family.
+      We are Pleased to Welcome you to the Family.
     </p>
 
     <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
@@ -85,12 +85,12 @@ router.post(
     </p>
 
     <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
-      As a compliment, we are rewarding you ${loyalityPoints} loyality points.
+      As a compliment, we are Rewarding you ${loyalityPoints} Loyality Points.
     </p>
     <br />
 
     <p style={{ fontFamily: 'Times New Roman', fontSize: '1.1rem' }}>
-      We Hope You Have a gret Journey ahead with Travoscope Hotels!
+      We Hope You Have a great Journey with Travoscope Hotels!
     </p>
         `;
       // create reusable transporter object using the default SMTP transport

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const AddBookingItem = ({
-  addbooking: { fullname, destination, slottime, slotdate }
+  addbooking: { fullname, destination, slottime, slotdate },
 }) => {
   var name = 'Deep Tissue Massage Appointment';
   return (
@@ -15,7 +15,7 @@ const AddBookingItem = ({
         <p
           style={{
             display: 'inline',
-            fontSize: '1.1rem'
+            fontSize: '1.1rem',
           }}
         >
           {name}
@@ -25,7 +25,7 @@ const AddBookingItem = ({
           <p
             style={{
               display: 'inline',
-              fontSize: '0.9rem'
+              fontSize: '0.9rem',
             }}
           >
             {fullname}
@@ -35,7 +35,7 @@ const AddBookingItem = ({
         <h2
           style={{
             marginBottom: '0px',
-            fontSize: '0.9rem'
+            fontSize: '0.9rem',
           }}
         >
           {destination}
@@ -46,10 +46,10 @@ const AddBookingItem = ({
           <p
             style={{
               display: 'inline',
-              fontSize: '1rem'
+              fontSize: '1rem',
             }}
           >
-            {new Date(slotdate).toDateString()}, {slottime}
+            {new Date(slotdate).toUTCString().substring(0, 16)}, {slottime}
           </p>
         </p>
       </div>
@@ -58,7 +58,7 @@ const AddBookingItem = ({
 };
 
 AddBookingItem.propTypes = {
-  booking: PropTypes.object.isRequired
+  booking: PropTypes.object.isRequired,
 };
 
 export default connect(null, {})(AddBookingItem);

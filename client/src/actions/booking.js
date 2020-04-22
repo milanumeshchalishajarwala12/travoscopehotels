@@ -196,8 +196,7 @@ export const bookSlot = (
   roomnumber,
   massagetotal,
   total,
-  fullname,
-  isAuthenticated
+  fullname
 ) => async (dispatch) => {
   total = total + massagetotal;
   const config = {
@@ -216,7 +215,6 @@ export const bookSlot = (
     massagetotal,
     total,
     fullname,
-    isAuthenticated,
   });
   console.log('FC', body);
 
