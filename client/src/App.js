@@ -68,8 +68,8 @@ function App() {
             <Route exact path="/email" component={Email} />
 
             <PrivateRoute exact path="/dining" component={Dining} />
-            <PrivateRoute exact path="/order" component={Order} />
-            <PrivateRoute exact path="/ordersummary" component={OrderSummary} />
+            <Route exact path="/order" component={Order} />
+            <Route exact path="/ordersummary" component={OrderSummary} />
 
             <Route
               exact
