@@ -45,7 +45,10 @@ export const addRoom = (
   laundry,
   airportPickupDrop,
   jacuzi,
-  bedtype
+  bedtype,
+  loungeAccess,
+  maxCap,
+  roomnumber
 ) => async (dispatch) => {
   const config = {
     headers: {
@@ -61,6 +64,9 @@ export const addRoom = (
     airportPickupDrop,
     jacuzi,
     bedtype,
+    loungeAccess,
+    maxCap,
+    roomnumber,
   });
   const res = await axios.post('/api/rooms', body, config);
   try {

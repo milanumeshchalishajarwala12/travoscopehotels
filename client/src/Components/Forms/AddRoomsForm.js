@@ -20,16 +20,26 @@ const AddRoomsForm = ({ addRoom }) => {
     roomtype: '',
     pricepernight: '',
     bedtype: '',
+    maxCap: 1,
+    roomnumber: '',
   });
   const [state, setState] = useState({
     wifi: false,
     laundry: false,
     airportPickupDrop: false,
     jacuzi: false,
+    loungeAccess: false,
   });
 
-  const { destination, pricepernight, roomtype, bedtype } = formData;
-  const { wifi, laundry, airportPickupDrop, jacuzi } = state;
+  const {
+    destination,
+    pricepernight,
+    roomtype,
+    bedtype,
+    maxCap,
+    roomnumber,
+  } = formData;
+  const { wifi, laundry, airportPickupDrop, jacuzi, loungeAccess } = state;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,11 +55,14 @@ const AddRoomsForm = ({ addRoom }) => {
       laundry,
       airportPickupDrop,
       jacuzi,
-      bedtype
+      bedtype,
+      loungeAccess,
+      maxCap,
+      roomnumber
     );
   };
   return (
-    <div className="addemployeeformcontainer" style={{ height: '29rem' }}>
+    <div className="addemployeeformcontainer" style={{ height: '42rem' }}>
       <form className="addemployeeform">
         <FormControl>
           <InputLabel id="demo-controlled-open-select-label">
@@ -112,6 +125,37 @@ const AddRoomsForm = ({ addRoom }) => {
             <MenuItem value="2 x Double Bed">2 x Double Bed</MenuItem>
           </Select>
         </FormControl>
+
+        <FormControl>
+          <InputLabel id="demo-controlled-open-select-label">
+            Maximum Capacity{' '}
+          </InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            value={maxCap}
+            onChange={(e) => onChange(e)}
+            name="maxCap"
+            style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
+          >
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+            <MenuItem value="3">3</MenuItem>
+            <MenuItem value="4">4</MenuItem>
+            <MenuItem value="5">5</MenuItem>
+            <MenuItem value="6">6</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField
+          style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
+          label="Room No."
+          name="roomnumber"
+          type="number"
+          value={roomnumber}
+          onChange={(e) => onChange(e)}
+          required
+        />
+
         <TextField
           type="text"
           style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
@@ -171,11 +215,23 @@ const AddRoomsForm = ({ addRoom }) => {
           label="In-house Jacuzi"
         />
         <br />
+        <FormControlLabel
+          style={{ color: '#373737' }}
+          control={
+            <Checkbox
+              checked={loungeAccess}
+              onChange={(e) => onChange(e)}
+              name="loungeAccess"
+            />
+          }
+          label="Lounge Access"
+        />
+        <br />
         <Button
           onClick={(e) => onSubmit(e)}
           style={{
             width: '40%',
-            margin: ' 0px 130px 10px 130px',
+            margin: ' 20px 130px 10px 130px',
             backgroundColor: 'brown',
           }}
           variant="contained"

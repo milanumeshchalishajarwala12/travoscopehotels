@@ -36,21 +36,25 @@ function App() {
           <Switch>
             <Route exact path="/" component={adminLoginPage} />
 
-            <Route exact path="/funcselection" component={FuncSelection} />
-            <Route exact path="/listofrooms" component={ListOfRooms} />
-            <Route exact path="/listofusers" component={ListOfUsers} />
-            <Route exact path="/listofstaff" component={ListOfStaff} />
-            <Route exact path="/addemployee" component={AddEmployee} />
-            <Route exact path="/addrooms" component={AddRooms} />
+            <PrivateRoute
+              exact
+              path="/funcselection"
+              component={FuncSelection}
+            />
+            <PrivateRoute exact path="/listofrooms" component={ListOfRooms} />
+            <PrivateRoute exact path="/listofusers" component={ListOfUsers} />
+            <PrivateRoute exact path="/listofstaff" component={ListOfStaff} />
+            <PrivateRoute exact path="/addemployee" component={AddEmployee} />
+            <PrivateRoute exact path="/addrooms" component={AddRooms} />
 
-            <Route exact path="/searchstaff" component={SearchStaff} />
-            <Route exact path="/searchusers" component={SearchUser} />
-            <Route
+            <PrivateRoute exact path="/searchstaff" component={SearchStaff} />
+            <PrivateRoute exact path="/searchusers" component={SearchUser} />
+            <PrivateRoute
               exact
               path="/searchusersbystatus"
               component={SearchUserByStatus}
             />
-            <Route exact path="/searchrooms" component={SearchRooms} />
+            <PrivateRoute exact path="/searchrooms" component={SearchRooms} />
           </Switch>
         </Fragment>
       </Router>

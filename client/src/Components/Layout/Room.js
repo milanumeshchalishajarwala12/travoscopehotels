@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteRoom } from '../../actions/room';
 
-export const Room = ({
-  deleteRoom,
+const Room = ({
   room: {
     _id,
     roomtype,
@@ -16,8 +15,13 @@ export const Room = ({
     airportPickupDrop,
     jacuzi,
     bedtype,
+    loungeAccess,
+    roomnumber,
+    maxCap,
   },
+  deleteRoom,
 }) => {
+  const onClck = (e) => {};
   return (
     <div className="roomcontainer">
       <div style={{ width: '25%', display: 'inline-block' }}>
@@ -25,6 +29,10 @@ export const Room = ({
       </div>
       <div style={{ width: '25%', display: 'inline-block' }}>
         <p>{roomtype}</p>
+        <br />
+        <p>Room number: {roomnumber}</p>
+        <br />
+        <p>Maximum Capacity: {maxCap}</p>
       </div>
       <div style={{ width: '25%', display: 'inline-block' }}>
         <p>${pricepernight}/night</p>
@@ -42,6 +50,10 @@ export const Room = ({
             <li>
               In-house Jacuzi - {jacuzi ? <span>Yes</span> : <span>No</span>}
             </li>
+            <li>
+              Lounge Access -{' '}
+              {loungeAccess ? <span>Yes</span> : <span>No</span>}
+            </li>
           </ul>{' '}
           <button
             style={{
@@ -51,9 +63,9 @@ export const Room = ({
               fontSize: '0.6rem',
               marginLeft: '20px',
             }}
-            onClick={(e) => console.log(_id)}
-            //TODO
-            //Add Delete Functioanity
+            onClick={(e) => {
+              deleteRoom(_id);
+            }}
           >
             Delete Room
           </button>

@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 
 const AddEmployee = ({ addStaff }) => {
   const [formData, setFormData] = useState({
+    loginid: '',
+    password: '',
     name: '',
     gender: '',
     doj: '',
@@ -21,10 +23,12 @@ const AddEmployee = ({ addStaff }) => {
     department: '',
     salary: '',
     dob: '',
-    destination: ''
+    destination: '',
   });
 
   const {
+    loginid,
+    password,
     name,
     gender,
     dob,
@@ -34,14 +38,16 @@ const AddEmployee = ({ addStaff }) => {
     email,
     salary,
     destination,
-    department
+    department,
   } = formData;
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
     console.log(state);
     addStaff(
+      loginid,
+      password,
       name,
       gender,
       dob,
@@ -56,15 +62,15 @@ const AddEmployee = ({ addStaff }) => {
     );
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const [state, setState] = useState({
-    isCurrentEmployee: true
+    isCurrentEmployee: true,
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.checked });
   };
 
@@ -84,10 +90,10 @@ const AddEmployee = ({ addStaff }) => {
           fontFamily: 'Arial',
           padding: '0.3rem 0rem 0.3rem 1rem',
           margin: '10px 0px 10px 10px',
-          color: 'lightgrey'
+          color: 'lightgrey',
         }}
         type="date"
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         name="dol"
         value={dol}
       />
@@ -108,10 +114,10 @@ const AddEmployee = ({ addStaff }) => {
           border: '1px solid #373737',
           fontFamily: 'Arial',
           padding: '0.3rem 0rem 0.3rem 1rem',
-          margin: '10px 0px 10px 10px'
+          margin: '10px 0px 10px 10px',
         }}
         type="date"
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         name="dol"
         value={dol}
       />
@@ -119,7 +125,29 @@ const AddEmployee = ({ addStaff }) => {
   );
   return (
     <div className="addemployeeformcontainer">
-      <form className="addemployeeform" onSubmit={e => onSubmit(e)}>
+      <form className="addemployeeform" onSubmit={(e) => onSubmit(e)}>
+        <TextField
+          type="text"
+          style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
+          label="Login Id"
+          name="loginid"
+          type="text"
+          value={loginid}
+          onChange={(e) => onChange(e)}
+          required
+        />
+        <br />
+        <TextField
+          type="text"
+          style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
+          label="Password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => onChange(e)}
+          required
+        />
+        <br />
         <TextField
           type="text"
           style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
@@ -127,7 +155,7 @@ const AddEmployee = ({ addStaff }) => {
           name="name"
           type="text"
           value={name}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
         />
         <br />
@@ -140,7 +168,7 @@ const AddEmployee = ({ addStaff }) => {
             labelId="demo-controlled-open-select-label"
             id="demo-controlled-open-select"
             value={gender}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             name="gender"
             style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
           >
@@ -156,7 +184,7 @@ const AddEmployee = ({ addStaff }) => {
           type="number"
           value={contact}
           name="contact"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <br />
         <TextField
@@ -165,7 +193,7 @@ const AddEmployee = ({ addStaff }) => {
           type="email"
           value={email}
           name="email"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
         />
         <br />
@@ -181,10 +209,10 @@ const AddEmployee = ({ addStaff }) => {
             border: '1px solid #373737',
             fontFamily: 'Arial',
             padding: '0.3rem 0rem 0.3rem 1rem',
-            margin: '10px 0px 10px 25px'
+            margin: '10px 0px 10px 25px',
           }}
           type="date"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           name="dob"
           value={dob}
         />
@@ -201,10 +229,10 @@ const AddEmployee = ({ addStaff }) => {
             border: '1px solid #373737',
             fontFamily: 'Arial',
             padding: '0.3rem 0rem 0.3rem 1rem',
-            margin: '10px 0px 10px 10px'
+            margin: '10px 0px 10px 10px',
           }}
           type="date"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           name="doj"
           value={doj}
         />
@@ -214,7 +242,7 @@ const AddEmployee = ({ addStaff }) => {
         </label>
         <Switch
           checked={state.isCurrentEmployee}
-          onChange={e => handleChange(e)}
+          onChange={(e) => handleChange(e)}
           name="isCurrentEmployee"
           inputProps={{ 'aria-label': 'primary checkbox' }}
         />
@@ -230,7 +258,7 @@ const AddEmployee = ({ addStaff }) => {
             labelId="demo-controlled-open-select-label"
             id="demo-controlled-open-select"
             value={destination}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             name="destination"
             style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
           >
@@ -255,7 +283,7 @@ const AddEmployee = ({ addStaff }) => {
             labelId="demo-controlled-open-select-label"
             id="demo-controlled-open-select"
             value={department}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             name="department"
             style={{ width: '25rem', margin: '10px 0px 10px 0px' }}
           >
@@ -274,7 +302,7 @@ const AddEmployee = ({ addStaff }) => {
           type="number"
           value={salary}
           name="salary"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           required
         />
         <br />
@@ -283,7 +311,7 @@ const AddEmployee = ({ addStaff }) => {
           style={{
             width: '40%',
             margin: '10px 0px 10px 0px',
-            backgroundColor: 'brown'
+            backgroundColor: 'brown',
           }}
           variant="contained"
           color="primary"
@@ -297,7 +325,7 @@ const AddEmployee = ({ addStaff }) => {
 };
 
 AddEmployee.propTypes = {
-  addStaff: PropTypes.func.isRequired
+  addStaff: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addStaff })(AddEmployee);

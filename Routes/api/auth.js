@@ -14,7 +14,7 @@ router.post(
   '/',
   [
     check('loginid', 'Please include a valid loginid').isEmail(),
-    check('password', 'Password is required').exists()
+    check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -42,8 +42,8 @@ router.post(
       }
       const payload = {
         admin: {
-          id: admin.id
-        }
+          id: admin.id,
+        },
       };
 
       jwt.sign(

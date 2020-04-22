@@ -23,7 +23,7 @@ router.post(
 
     check('salary', 'Valid salary not found')
       .not()
-      .isEmpty()
+      .isEmpty(),
   ],
 
   async (req, res) => {
@@ -33,6 +33,8 @@ router.post(
         return res.status(400).json({ errors: errors.array() });
       }
       const {
+        loginid,
+        password,
         name,
         gender,
         doj,
@@ -43,10 +45,12 @@ router.post(
         contact,
         email,
         dob,
-        destination
+        destination,
       } = req.body;
 
       staff = new Staff({
+        loginid,
+        password,
         name,
         gender,
         doj,
@@ -57,7 +61,7 @@ router.post(
         contact,
         email,
         dob,
-        destination
+        destination,
       });
 
       if (isCurrentEmployee == true && dol) {

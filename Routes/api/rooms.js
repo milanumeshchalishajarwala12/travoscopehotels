@@ -9,10 +9,16 @@ router.post(
   '/',
 
   [
-    check('destination', 'Valid destination not found').not().isEmpty(),
-    check('roomtype', 'Valid room type not found').not().isEmpty(),
+    check('destination', 'Valid destination not found')
+      .not()
+      .isEmpty(),
+    check('roomtype', 'Valid room type not found')
+      .not()
+      .isEmpty(),
 
-    check('pricepernight', 'Valid price not found').not().isEmpty(),
+    check('pricepernight', 'Valid price not found')
+      .not()
+      .isEmpty(),
   ],
 
   async (req, res) => {
@@ -30,7 +36,21 @@ router.post(
         laundry,
         airportPickupDrop,
         bedtype,
+        loungeAccess,
+        maxCap,
+        roomnumber,
       } = req.body;
+
+      const dest = await Room.find({
+        destination: destination,
+        roomnumber: roomnumber,
+      });
+
+      if (dest.length > 0) {
+        return res.status(400).json({
+          msg: `Room number ${roomnumber} already exists at ${destination}`,
+        });
+      }
 
       room = new Room({
         destination,
@@ -41,7 +61,11 @@ router.post(
         laundry,
         airportPickupDrop,
         bedtype,
+        loungeAccess,
+        maxCap,
+        roomnumber,
       });
+
       await room.save();
       console.log('Room added');
       return res.status(200).json({ room });
@@ -71,7 +95,7 @@ router.post('/search', async (req, res) => {
   try {
     const { destination } = req.body;
     const rooms = await Room.find({ destination: destination }).sort(
-      'destination'
+      'roomnumber'
     );
     if (rooms.length > 0) {
       res.json(rooms);

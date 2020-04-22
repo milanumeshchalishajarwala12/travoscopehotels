@@ -37,6 +37,20 @@ const RoomSchema = new mongoose.Schema({
   airportPickupDrop: {
     type: Boolean,
   },
+  maxCap: {
+    type: Number,
+    max: 6,
+    min: 1,
+    required: true,
+  },
+  roomnumber: {
+    type: Number,
+    required: true,
+  },
+  loungeAccess: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 module.exports = Room = mongoose.model('room', RoomSchema);

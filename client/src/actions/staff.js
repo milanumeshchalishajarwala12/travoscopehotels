@@ -53,6 +53,8 @@ export const searchStaff = (destination, isCurrentEmployee) => async (
 };
 
 export const addStaff = (
+  loginid,
+  password,
   name,
   gender,
   dob,
@@ -67,6 +69,8 @@ export const addStaff = (
 ) => async (dispatch) => {
   try {
     const body = JSON.stringify({
+      loginid,
+      password,
       name,
       gender,
       dob,

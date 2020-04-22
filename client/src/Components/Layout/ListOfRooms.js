@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Room } from '../Layout/Room';
+import Room from '../Layout/Room';
 import { connect } from 'react-redux';
 import { getRooms } from '../../actions/room';
 import { Link } from 'react-router-dom';
